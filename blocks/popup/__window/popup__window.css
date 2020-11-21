@@ -1,0 +1,36 @@
+.popup__window
+{
+  position: absolute;
+  top: 15%;
+  left: auto;
+  max-width: 55%;
+  min-height: 400px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+@media screen and (max-width: 1280px)
+{
+  .popup__window
+  {
+    max-width: 35%;
+    min-height: 330px;
+
+  }
+}
+@media screen and (max-width: 960px)
+{
+  .popup__window
+  {
+    max-width: 50%;
+  }
+}
+@media screen and (max-width: 768px)
+{
+  .popup__window
+  {
+    max-width: 70%;
+  }
+}
