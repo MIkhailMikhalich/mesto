@@ -1,4 +1,4 @@
-.popup__closebutton
+.popup__close-button
 {
   transform: rotate(-45deg);
   position: absolute;
@@ -10,14 +10,14 @@
 
 @media screen and (max-width: 1280px)
 {
-  .popup__closebutton
+  .popup__close-button
   {
     left: 99%;
   }
 }
 @media screen and (max-width: 400px)
 {
-  .popup__closebutton
+  .popup__close-button
   {
     left: 85%;
     top: -13%;

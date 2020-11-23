@@ -3,7 +3,7 @@
   position: absolute;
   top: 15%;
   left: auto;
-  max-width: 55%;
+  max-width: 430px;
   min-height: 400px;
   width: 100%;
   background-color: white;
@@ -12,20 +12,12 @@
   justify-content: center;
   flex-direction: column;
 }
-@media screen and (max-width: 1280px)
-{
-  .popup__window
-  {
-    max-width: 35%;
-    min-height: 330px;
 
-  }
-}
 @media screen and (max-width: 960px)
 {
   .popup__window
   {
-    max-width: 50%;
+    max-width: 60%;
   }
 }
 @media screen and (max-width: 768px)
@@ -35,7 +27,7 @@
     max-width: 70%;
   }
 }
-@media screen and (max-width: 425px)
+@media screen and (max-width: 550px)
 {
   .popup__window
   {

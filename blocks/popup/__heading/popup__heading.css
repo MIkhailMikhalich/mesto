@@ -2,8 +2,8 @@
 {
 
   font-weight: 900;
-  font-size: 50px;
-  line-height: calc(60/50);
+  font-size: 24px;
+  line-height: calc(29/24);
   margin: 34px auto 54px auto;
 }
 @media screen and (max-width:1280px)
@@ -11,8 +11,6 @@
   .popup__heading
   {
     margin: 34px 64px 54px 36px;
-    font-size: 24px;
-    line-height: calc(29/24);
   }
 }
 @media screen and (max-width:1024px)

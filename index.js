@@ -1,5 +1,5 @@
-const ClosebuttonNode = document.querySelector('.popup__closebutton');
-const EditbuttonNode = document.querySelector('.profile__editbutton');
+const ClosebuttonNode = document.querySelector('.popup__close-button');
+const EditbuttonNode = document.querySelector('.profile__edit-button');
 const PopupNode = document.querySelector('.popup');
 
 EditbuttonNode.addEventListener('click', togglePopupVisibility);
@@ -14,42 +14,23 @@ function togglePopupVisibility()
 
 
 
-const ProfileNameFormNode = document.querySelector('.popup__nameform')
-const ProfileInfoFormNode = document.querySelector('.popup__infoform')
+const PopupFormNode = document.querySelector('.popup__form');
 const ProfileNameNode = document.querySelector('.profile__name');
 const ProfileInfoNode = document.querySelector('.profile__text');
-const SubmitButtonNode = document.querySelector('.popup__savebutton');
-
-SubmitButtonNode.addEventListener('click',ButtonSummit);
+const SubmitButtonNode = document.querySelector('.popup__save-button');
 
 
-ProfileNameFormNode.addEventListener('submit', NameSubmit);
-ProfileInfoFormNode.addEventListener('submit', InfoSubmit);
+SubmitButtonNode.addEventListener('click',Submit);
+PopupFormNode.addEventListener('submit', Submit);
 
-function NameSubmit(event)
-{
 
-  event.preventDefault();
-  const formInputNode = event.currentTarget.querySelector('.popup__nameinput');
-  ProfileNameNode.textContent = formInputNode.value;
-  document.querySelector('.popup__nameinput').setAttribute('placeholder',formInputNode.value);
-
-}
-function InfoSubmit(event)
+function Submit (event)
 {
   event.preventDefault();
-  const formInputNode = event.currentTarget.querySelector('.popup__infoinput');
-  ProfileInfoNode.textContent = formInputNode.value;
-  document.querySelector('.popup__infoinput').setAttribute('placeholder',formInputNode.value);
-}
-
-function ButtonSummit (event)
-{
-  event.preventDefault();
-  const FormInputNameNode = document.querySelector('.popup__nameinput');
-  const FormInputInfoNode = document.querySelector('.popup__infoinput');
+  const FormInputNameNode = document.querySelector('.popup__name-input');
+  const FormInputInfoNode = document.querySelector('.popup__info-input');
   ProfileNameNode.textContent = FormInputNameNode.value;
   ProfileInfoNode.textContent = FormInputInfoNode.value;
-  document.querySelector('.popup__nameinput').setAttribute('placeholder',FormInputNameNode.value);
-  document.querySelector('.popup__infoinput').setAttribute('placeholder',FormInputInfoNode.value);
+  document.querySelector('.popup__name-input').setAttribute('placeholder',FormInputNameNode.value);
+  document.querySelector('.popup__info-input').setAttribute('placeholder',FormInputInfoNode.value);
 }

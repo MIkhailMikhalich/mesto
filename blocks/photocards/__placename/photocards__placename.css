@@ -5,6 +5,10 @@
   font-size: 24px;
   line-height: calc(29/24);
   margin: 0;
+  color: black;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 @media screen and (max-width: 1024px)
 {
@@ -18,7 +22,7 @@
 {
   .photocards__placename
   {
-    font-size: 24px;
+    font-size: 2vh;
     line-height: calc(29/24);
   }
 }

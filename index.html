@@ -20,54 +20,58 @@
           <h1 class="text profile__name">Жак-Ив Кусто</h1>
           <p class="text profile__text">Исследователь океана</p>
         </div>
-        <img class="button profile__editbutton" src="./images/Edit Button.svg" alt="Изменение дланных">
+        <button class="button profile__edit-button"> <img src="./images/Edit Button.svg"
+            alt="Изменение дланных"></button>
       </div>
-      <div class="button profile__addbutton">
+      <button class="profile__add-button button">
         <img class="plus" src="./images/Plus.svg" alt="Плюс">
-      </div>
+      </button>
     </section>
     <section class="photocards">
       <div class="photocards__item">
         <img class="photocards__photo" src="./images/Karachaevo.jpg" alt="Древнее здание на фоне гор">
         <div class="photocards__name-like-area">
-          <h2 class="text text_black photocards__placename">Карачаевск</h2>
-          <img class="photocards__likebutton" src="./images/Heart.svg" alt="Сердечко">
+          <h2 class="text  photocards__placename">Карачаевск</h2>
+          <buton class="photocards__like-button"><img src="./images/Heart.svg" alt="Сердечко"></buton>
         </div>
       </div>
       <div class="photocards__item">
         <img class="photocards__photo" src="./images/Elbrus.jpg" alt="Древнее здание на фоне гор">
         <div class="photocards__name-like-area">
-          <h2 class="text text_black photocards__placename">Гора Эльбрус</h2>
-          <img class="photocards__likebutton" src="./images/Heart.svg" alt="Сердечко">
+          <h2 class="text  photocards__placename">Гора Эльбрус</h2>
+          <buton class="photocards__like-button"><img src="./images/Heart.svg" alt="Сердечко"></buton>
+
+
         </div>
       </div>
       <div class="photocards__item">
         <img class="photocards__photo" src="./images/Dombay.jpg" alt="Древнее здание на фоне гор">
         <div class="photocards__name-like-area">
-          <h2 class="text text_black photocards__placename">Домбай</h2>
-          <img class="photocards__likebutton" src="./images/Heart.svg" alt="Сердечко">
+          <h2 class="text  photocards__placename">Домбай</h2>
+          <buton class="photocards__like-button"><img src="./images/Heart.svg" alt="Сердечко"></buton>
+
         </div>
       </div>
       <div class="photocards__item">
         <img class="photocards__photo" src="./images/Elbrus.jpg" alt="Древнее здание на фоне гор">
         <div class="photocards__name-like-area">
-          <h2 class="text text_black photocards__placename">Гора Эльбрус</h2>
-          <img class="photocards__likebutton" src="./images/Heart.svg" alt="Сердечко">
+          <h2 class="text  photocards__placename">Гора Эльбрус</h2>
+          <buton class="photocards__like-button"><img src="./images/Heart.svg" alt="Сердечко"></buton>
         </div>
       </div>
 
       <div class="photocards__item">
         <img class="photocards__photo" src="./images/Dombay.jpg" alt="Древнее здание на фоне гор">
         <div class="photocards__name-like-area">
-          <h2 class="text text_black photocards__placename">Домбай</h2>
-          <img class="photocards__likebutton" src="./images/Heart.svg" alt="Сердечко">
+          <h2 class="text  photocards__placename">Домбай</h2>
+          <buton class="photocards__like-button"><img src="./images/Heart.svg" alt="Сердечко"></buton>
         </div>
       </div>
       <div class="photocards__item">
         <img class="photocards__photo" src="./images/Karachaevo.jpg" alt="Древнее здание на фоне гор">
         <div class="photocards__name-like-area">
-          <h2 class="text text_black photocards__placename">Карачаево-Черкесия</h2>
-          <img class="photocards__likebutton" src="./images/Heart.svg" alt="Сердечко">
+          <h2 class="text  photocards__placename">Карачаево-Черкесия</h2>
+          <buton class="photocards__like-button"><img src="./images/Heart.svg" alt="Сердечко"></buton>
         </div>
       </div>
     </section>
@@ -77,16 +81,15 @@
     <div class="popup popup_hidden">
       <div class="popup__window">
         <h3 class="popup__heading">Редактировать профиль</h3>
-        <img class="button popup__closebutton" src="./images/Plus.svg" alt="крестик">
+        <button class="button popup__close-button"> <img src="./images/Plus.svg" alt="крестик"></button>
+        <form class="popup__form">
+          <input name="name" placeholder="Жак-Ив Кусто" type="text" class=" input  popup__name-input">
+          <input name="information" placeholder="Исследователь океана" type="text" class=" input  popup__info-input">
 
-        <form class="popup__nameform"><input name="name" placeholder="Жак-Ив Кусто" type="text"
-            class=" input  popup__nameinput"></form>
-        <form class="popup__infoform"><input name="information" placeholder="Исследователь океана" type="text"
-            class=" input  popup__infoinput"></form>
-        <button type="submit" class="popup__savebutton button">
-          <p class="popup__save">Сохранить</p>
-        </button>
-
+          <button type="submit" class="popup__save-button button">
+            <p class="popup__save">Сохранить</p>
+          </button>
+        </form>
       </div>
     </div>
   </main>
