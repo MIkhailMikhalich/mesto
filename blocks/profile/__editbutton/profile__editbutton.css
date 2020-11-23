@@ -1,10 +1,10 @@
-.profile__edit_button
+.profile__editbutton
 {
   margin-top: -30px;
 }
 @media screen and (max-width: 768px)
 {
-  .profile__edit_button
+  .profile__editbutton
   {
     margin-top: -60px;
   }
