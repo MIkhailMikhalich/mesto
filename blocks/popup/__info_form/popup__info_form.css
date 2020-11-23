@@ -1,0 +1,23 @@
+.popup__info_form
+{
+  max-width: 80%;
+  min-height: 40px;
+  width: 100%;
+  margin: 10px auto 48px auto;
+
+}
+@media screen and (max-width: 1280px)
+{
+  .popup__info_form
+  {
+    margin: 10px 36px 48px 36px;
+  }
+}
+@media screen and (max-width:425px)
+{
+  .popup__info_form
+  {
+    max-width: 85%;
+    margin: 10px 22px 45px 22px;
+  }
+}

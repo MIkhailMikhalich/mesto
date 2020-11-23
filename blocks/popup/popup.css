@@ -3,12 +3,19 @@
 @import url(./__window/popup__window.css);
 @import url(./__hidden/popup__hidden.css);
 @import url(./__heading/popup__heading.css);
+@import url(./__save/popup__save.css);
+@import url(./__save_button/popup__save_button.css);
+@import url(./__info_form/popup__info_form.css);
+@import url(./__name_form/popup__name_form.css);
 .popup
 {
+  position: fixed;
   top: 0;
   left: 0;
-  min-height: 100%;
-  min-width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
   z-index: 1;
   background-color: rgba( 0, 0, 0, 0.5);
 }

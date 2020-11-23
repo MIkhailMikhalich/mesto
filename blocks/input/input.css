@@ -1,0 +1,22 @@
+.input
+{
+  border: none;
+  border-bottom: 1px solid black;
+ width: inherit;
+ height: inherit;
+ min-height: 40px;
+}
+.input:active,
+.input:hover,
+.input:focus {
+outline: none;
+}
+
+.input::placeholder {
+  transition: 0.5s;
+  color: #aaa;
+}
+.input:focus::placeholder {
+  font-size: 10px;
+  transform: translateY(-16px);
+}
