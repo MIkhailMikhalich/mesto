@@ -1,14 +1,12 @@
 @import url(./__close-button/popup__close-button.css);
-@import url(./_visible/popup_visible.css);
 @import url(./__window/popup__window.css);
-@import url(./_hidden/popup_hidden.css);
 @import url(./__heading/popup__heading.css);
 @import url(./__save/popup__save.css);
 @import url(./__save-button/popup__save-button.css);
 @import url(./__form/popup__form.css);
 @import url(./__info-input/popup__info-input.css);
 @import url(./__name-input/popup__name-input.css);
-
+@import url(./__close-button-img/popup__close-button-img.css);
 .popup
 {
   position: fixed;
@@ -20,7 +18,12 @@
   width: 100%;
   z-index: 1;
   background-color: rgba( 0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-
+.popup_hidden
+{
+  display: none ;
+}

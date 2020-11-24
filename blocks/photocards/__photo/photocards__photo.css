@@ -1,7 +1,6 @@
 .photocards__photo
 {
   max-width: inherit;
-  box-shadow: 0 0 5px 2px;
   width: 100%;
   height: 100%;
   block-size: auto;

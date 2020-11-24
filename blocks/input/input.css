@@ -1,10 +1,13 @@
 .input
 {
   border: none;
-  border-bottom: 1px solid black;
- width: inherit;
- height: inherit;
- min-height: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  width: inherit;
+  height: inherit;
+  min-height: 27px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .input:active,
 .input:hover,
@@ -18,5 +21,5 @@ outline: none;
 }
 .input:focus::placeholder {
   font-size: 10px;
-  transform: translateY(-16px);
+  transform: translateY(-10px);
 }

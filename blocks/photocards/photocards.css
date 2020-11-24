@@ -1,6 +1,6 @@
 @import url(./__item/photocards__item.css);
 @import url(./__name-like-area/photocards__name-like-area.css);
-@import url(./__placename/photocards__placename.css);
+@import url(./__place-name/photocards__place-name.css);
 @import url(./__photo/photocards__photo.css);
 .photocards
 {

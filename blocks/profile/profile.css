@@ -6,10 +6,20 @@
 @import url(./__text/profile__text.css);
 .profile
 {
-  margin: 0 200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   align-items: center;
+  max-width: 880px;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 1280px)
+{
+  .profile
+  {
+    margin: 0 200px;
+
+  }
 }
 @media screen and (max-width: 768px)
 {

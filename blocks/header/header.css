@@ -3,9 +3,18 @@
 {
   display: flex;
   flex-direction: row;
-  margin: 45px 200px 40px 200px;
-  border-bottom: #545454 solid 1px;
+  margin: 45px auto 40px auto;
+  border-bottom: rgba(84, 84, 84, 0.7) solid 1px;
+  max-width: 880px;
 }
+@media screen and (max-width: 1280px)
+{
+  .header
+  {
+    margin: 45px 200px 40px 200px;
+  }
+}
+
 @media screen and (max-width: 768px)
 {
   .header
@@ -17,6 +26,6 @@
 {
   .header
   {
-    margin: 20px 0;
+    margin: 0 0 20px 0;
   }
 }
