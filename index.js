@@ -5,8 +5,8 @@ let popupFormNode = document.querySelector('.popup__form');
 let profileNameNode = document.querySelector('.profile__name');
 let profileInfoNode = document.querySelector('.profile__text');
 let submitButtonNode = document.querySelector('.popup__save-button');
-editbuttonNode.addEventListener('click', togglePopupVisibility);
-closebuttonNode.addEventListener('click', togglePopupVisibility);
+document.querySelector('.popup__name-input').setAttribute('placeholder',profileNameNode.textContent);
+document.querySelector('.popup__info-input').setAttribute('placeholder',profileInfoNode.textContent);
 
 
 function togglePopupVisibility()
@@ -14,16 +14,7 @@ function togglePopupVisibility()
   popupNode.classList.toggle('popup_hidden');
 }
 
-
-
-
-
-
-submitButtonNode.addEventListener('click',Submit);
-popupFormNode.addEventListener('submit', Submit);
-
-
-function Submit (event)
+function submit (event)
 {
   event.preventDefault();
   const formInputNameNode = document.querySelector('.popup__name-input');
@@ -33,3 +24,12 @@ function Submit (event)
   document.querySelector('.popup__name-input').setAttribute('placeholder',formInputNameNode.value);
   document.querySelector('.popup__info-input').setAttribute('placeholder',formInputInfoNode.value);
 }
+
+editbuttonNode.addEventListener('click', togglePopupVisibility);
+closebuttonNode.addEventListener('click', togglePopupVisibility);
+submitButtonNode.addEventListener('click',submit);
+submitButtonNode.addEventListener('click',togglePopupVisibility);
+popupFormNode.addEventListener('submit', submit);
+popupFormNode.addEventListener('submit', togglePopupVisibility);
+
+
