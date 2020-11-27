@@ -4,7 +4,7 @@
   border: none;
   color: white;
   background-color: rgba(0, 0, 0, 0);
-  transition: transform 0.7s ease-out;
+  padding: 0;
 }
 .button:hover
 {

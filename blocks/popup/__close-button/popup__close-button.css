@@ -11,11 +11,18 @@
 }
 
 
-@media screen and (max-width: 400px)
+@media screen and (max-width: 550px)
+{
+  .popup__close-button
+  {
+    left: 93%;
+    top: -13%;
+  }
+}
+@media screen and (max-width: 375px)
 {
   .popup__close-button
   {
     left: 85%;
-    top: -13%;
   }
 }

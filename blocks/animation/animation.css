@@ -1,8 +1,0 @@
-.animation
-{
-  transition: transform 0.7s ease-out;
-}
-.animation:hover
-{
-  transform: scale(0.9);
-}
