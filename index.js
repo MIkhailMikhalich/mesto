@@ -5,9 +5,9 @@ let popupFormNode = document.querySelector('.popup__form');
 let profileNameNode = document.querySelector('.profile__name');
 let profileInfoNode = document.querySelector('.profile__text');
 let submitButtonNode = document.querySelector('.popup__save-button');
-let formInputNameNode;
-document.querySelector('.popup__name-input').value=profileNameNode.textContent;
-document.querySelector('.popup__info-input').value=profileInfoNode.textContent;
+let nameInputNode = document.querySelector('.popup__name-input');
+let infoInputNode = document.querySelector('.popup__info-input');
+
 
 
 function togglePopupVisibility()
@@ -18,13 +18,19 @@ function togglePopupVisibility()
 function submit (event)
 {
   event.preventDefault();
-  formInputNameNode = document.querySelector('.popup__name-input');
-  formInputInfoNode = document.querySelector('.popup__info-input');
-  profileNameNode.textContent = formInputNameNode.value;
-  profileInfoNode.textContent = formInputInfoNode.value;
+
+  profileNameNode.textContent = nameInputNode.value;
+  profileInfoNode.textContent = infoInputNode.value;
+}
+
+function openpopup()
+{
+  document.querySelector('.popup__name-input').value=profileNameNode.textContent;
+  document.querySelector('.popup__info-input').value=profileInfoNode.textContent;
 }
 
 editbuttonNode.addEventListener('click', togglePopupVisibility);
+editbuttonNode.addEventListener('click', openpopup);
 closebuttonNode.addEventListener('click', togglePopupVisibility);
 submitButtonNode.addEventListener('click',submit);
 submitButtonNode.addEventListener('click',togglePopupVisibility);
