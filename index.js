@@ -25,8 +25,8 @@ function submit (event)
 
 function openpopup()
 {
-  document.querySelector('.popup__name-input').value=profileNameNode.textContent;
-  document.querySelector('.popup__info-input').value=profileInfoNode.textContent;
+  nameInputNode.value=profileNameNode.textContent;
+  infoInputNode.value=profileInfoNode.textContent;
 }
 
 editbuttonNode.addEventListener('click', togglePopupVisibility);
