@@ -32,3 +32,10 @@
 @import url(../blocks/save-button/save-button.css);
 @import url(../blocks/popup/__window/popup__window.css);
 @import url(../blocks/button/__img/button__img.css);
+@import url(../blocks/photocards/__likeimg-fill/photocards__likeimg-fill.css);
+@import url(../blocks/photocards/__like-button/photocards__like-button.css);
+@import url(../blocks/popup-photo/__img/popup-photo__img.css);
+@import url(../blocks/photocards/__photo-button/photocards__photo-button.css);
+@import url(../blocks/popup-photo/__window/popup-photo__window.css);
+@import url(../blocks/popup-photo/__close-button/popup-photo__close-button.css);
+@import url(../blocks/popup-photo/__name/popup-photo__name.css);

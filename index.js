@@ -1,8 +1,12 @@
+
 let closebuttonNode = document.querySelector('.popup__close-button');
 let closePlacebuttonNode = document.querySelector('.popup__place-close-button');
+let closePhotobuttonNode = document.querySelector('.popup-photo__close-button');
 let editbuttonNode = document.querySelector('.profile__edit-button');
 let popupNode = document.querySelector('#popup');
 let popupPlaceNode = document.querySelector('#popup-place');
+let popupPhotoNode = document.querySelector('#popup-photo');
+let photoNode = document.querySelector('.popup-photo__img');
 let popupFormNode = document.querySelector('.popup__form');
 let profileNameNode = document.querySelector('.profile__name');
 let profileInfoNode = document.querySelector('.profile__text');
@@ -13,9 +17,11 @@ let placeNameInputNode = document.querySelector('.popup__place-name-input');
 let infoInputNode = document.querySelector('.popup__info-input');
 let srcInputNode = document.querySelector('.popup__src-input');
 let addButtonNode = document.querySelector('.profile__add-button');
+
 const photoTemplate = document.querySelector('#photocard');
 const photocards = document.querySelector('.photocards');
 const namelikearea = document.querySelector('.photocards__name-like-area');
+
 const initialCards = [
   {
       name: 'Архыз',
@@ -59,9 +65,14 @@ function photoCardSubmit(event)
 function photoCardAdd(name, link)
 {
   const photoElement = photoTemplate.content.cloneNode(true);
+  let likeButtonNode = photoElement.querySelector('.photocards__like-button');
+  let photoButtonNode = photoElement.querySelector('.photocards__photo-button');
   photoElement.querySelector('.photocards__place-name').textContent=name;
   photoElement.querySelector('.photocards__photo').src=link;
-  photocards.append(photoElement);
+  photoButtonNode.addEventListener('click',function() {togglePhotoVisibility(link,name)});
+  closePhotobuttonNode.addEventListener('click',togglePopupPhotoVisibility);
+  likeButtonNode.addEventListener('click',function(a){onLikeButtonNode(a.currentTarget)});
+  photocards.prepend(photoElement);
 }
 function togglePopupVisibility()
 {
@@ -70,6 +81,16 @@ function togglePopupVisibility()
 function togglePopupPlaceVisibility()
 {
   popupPlaceNode.classList.toggle('popup_hidden');
+}
+function togglePhotoVisibility(link , name)
+{
+  popupPhotoNode.classList.toggle('popup_hidden');
+  document.querySelector('.popup-photo__img').setAttribute('src',`${link}`)
+  document.querySelector('.popup-photo__name').textContent=name;
+}
+function togglePopupPhotoVisibility()
+{
+  popupPhotoNode.classList.toggle('popup_hidden');
 }
 function submit (event)
 {
@@ -84,8 +105,16 @@ function openpopup()
   nameInputNode.value=profileNameNode.textContent;
   infoInputNode.value=profileInfoNode.textContent;
 }
+function onLikeButtonNode(like)
+{
+  like.classList.toggle('photocards__likeimg-fill')
+}
+
+
 submitPlaceButtonNode.addEventListener('click',photoCardSubmit);
-closePlacebuttonNode.addEventListener('click',togglePopupPlaceVisibility)
+submitPlaceButtonNode.addEventListener('click',togglePopupPlaceVisibility);
+closePlacebuttonNode.addEventListener('click',togglePopupPlaceVisibility);
+closePhotobuttonNode.addEventListener('click',togglePopupPhotoVisibility);
 addButtonNode.addEventListener('click', togglePopupPlaceVisibility);
 editbuttonNode.addEventListener('click', togglePopupVisibility);
 editbuttonNode.addEventListener('click', openpopup);

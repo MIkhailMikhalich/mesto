@@ -21,7 +21,7 @@
           <p class="text profile__text">Исследователь океана</p>
         </div>
         <button type="button" class="button  profile__edit-button">
-          <img class="button__img"  src="./images/edit_button.svg" alt="Изменение дланных">
+          <img class="button__img" src="./images/edit_button.svg" alt="Изменение дланных">
         </button>
       </div>
       <button type="button" class=" profile__add-button button">
@@ -52,11 +52,11 @@
     <div id="popup-place" class="popup popup_hidden">
       <div class="popup__window">
         <h3 class="popup__heading">Новое место</h3>
-        <button type="button" class="button close-button popup__place-close-button"> <img class="popup__close-button-img"
-            src="./images/plus.svg" alt="крестик"></button>
+        <button type="button" class="button close-button popup__place-close-button"> <img
+            class="popup__close-button-img" src="./images/plus.svg" alt="крестик"></button>
         <form name="photo-iformation" class="popup__form">
-          <input  name="name" placeholder="Название" type="text" class=" input firstform popup__place-name-input">
-          <input  name="src" placeholder="Ссылка на картинку" type="text" class=" input secondform  popup__src-input">
+          <input name="name" placeholder="Название" type="text" class=" input firstform popup__place-name-input">
+          <input name="src" placeholder="Ссылка на картинку" type="text" class=" input secondform  popup__src-input">
 
           <button type="submit" class="popup__place-save-button save-button button">
             Сохранить
@@ -64,14 +64,24 @@
         </form>
       </div>
     </div>
+    <div id="popup-photo" class="popup popup_hidden">
+      <div class="popup-photo__window">
+        <button type="button" class="button close-button popup-photo__close-button"> <img
+            class="popup__close-button-img" src="./images/plus.svg" alt="крестик"></button>
+        <img class="popup-photo__img" src="" alt="Фото">
+        <p class="popup-photo__name"></p>
+      </div>
+    </div>
   </main>
   <template id="photocard">
     <div class="photocards__item">
-      <img class="photocards__photo" src=" " alt="Фото">
+      <button type="button" class="photocards__photo-button button">
+        <img class="photocards__photo" src=" " alt="Фото">
+      </button>
       <div class="photocards__name-like-area">
         <h2 class="text  photocards__place-name"></h2>
         <button type="button" class="photocards__like-button  button">
-          <img src="./images/Heart.svg" alt="Сердечко">
+          <img class="photocards__likeimg" src="./images/Heart.svg" alt="Сердечко">
         </button>
       </div>
     </div>
