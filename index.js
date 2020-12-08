@@ -24,104 +24,102 @@ const namelikearea = document.querySelector('.photocards__name-like-area');
 
 const initialCards = [
   {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
 initialCards.forEach(
-function(element)
-{
-  let funcname=element.name;
-  let src = element.link;
-  photoCardAdd(funcname,src);
-});
-function photoCardSubmit(event)
-{
+  function (element) {
+    let funcname = element.name;
+    let src = element.link;
+    photoCardAdd(funcname, src);
+  });
+function photoCardSubmit(event) {
   event.preventDefault();
   let name = placeNameInputNode.value;
   let src = srcInputNode.value;
-  photoCardAdd(name,src);
+  photoCardAdd(name, src);
 }
-function photoCardAdd(name, link)
-{
+function photoCardAdd(name, link) {
   const photoElement = photoTemplate.content.cloneNode(true);
   let likeButtonNode = photoElement.querySelector('.photocards__like-button');
   let photoButtonNode = photoElement.querySelector('.photocards__photo-button');
-  photoElement.querySelector('.photocards__place-name').textContent=name;
-  photoElement.querySelector('.photocards__photo').src=link;
-  photoButtonNode.addEventListener('click',function() {togglePhotoVisibility(link,name)});
-  closePhotobuttonNode.addEventListener('click',togglePopupPhotoVisibility);
-  likeButtonNode.addEventListener('click',function(a){onLikeButtonNode(a.currentTarget)});
+  let deleteButtonNode = photoElement.querySelector('.photocards__delete-button');
+
+  photoElement.querySelector('.photocards__place-name').textContent = name;
+  photoElement.querySelector('.photocards__photo').src = link;
+  deleteButtonNode.addEventListener('click', function () {
+    let card = deleteButtonNode.closest('.photocards__item')
+    card.remove()
+  });
+  photoButtonNode.addEventListener('click', function () { togglePhotoVisibility(link, name) });
+  closePhotobuttonNode.addEventListener('click', togglePopupPhotoVisibility);
+  likeButtonNode.addEventListener('click', function (a) { onLikeButtonNode(a.currentTarget) });
   photocards.prepend(photoElement);
 }
-function togglePopupVisibility()
-{
+function togglePopupVisibility() {
   popupNode.classList.toggle('popup_hidden');
 }
-function togglePopupPlaceVisibility()
-{
+function togglePopupPlaceVisibility() {
   popupPlaceNode.classList.toggle('popup_hidden');
 }
-function togglePhotoVisibility(link , name)
-{
+function togglePhotoVisibility(link, name) {
   popupPhotoNode.classList.toggle('popup_hidden');
-  document.querySelector('.popup-photo__img').setAttribute('src',`${link}`)
-  document.querySelector('.popup-photo__name').textContent=name;
+  document.querySelector('.popup-photo__img').setAttribute('src', `${link}`)
+  document.querySelector('.popup-photo__name').textContent = name;
 }
-function togglePopupPhotoVisibility()
-{
+function togglePopupPhotoVisibility() {
   popupPhotoNode.classList.toggle('popup_hidden');
 }
-function submit (event)
-{
+function submit(event) {
   event.preventDefault();
 
   profileNameNode.textContent = nameInputNode.value;
   profileInfoNode.textContent = infoInputNode.value;
 }
 
-function openpopup()
-{
-  nameInputNode.value=profileNameNode.textContent;
-  infoInputNode.value=profileInfoNode.textContent;
+function openpopup() {
+  nameInputNode.value = profileNameNode.textContent;
+  infoInputNode.value = profileInfoNode.textContent;
 }
-function onLikeButtonNode(like)
-{
+function onLikeButtonNode(like) {
   like.classList.toggle('photocards__likeimg-fill')
 }
 
 
-submitPlaceButtonNode.addEventListener('click',photoCardSubmit);
-submitPlaceButtonNode.addEventListener('click',togglePopupPlaceVisibility);
-closePlacebuttonNode.addEventListener('click',togglePopupPlaceVisibility);
-closePhotobuttonNode.addEventListener('click',togglePopupPhotoVisibility);
+submitPlaceButtonNode.addEventListener('click', photoCardSubmit);
+submitPlaceButtonNode.addEventListener('click', togglePopupPlaceVisibility);
+closePlacebuttonNode.addEventListener('click', togglePopupPlaceVisibility);
+closePhotobuttonNode.addEventListener('click', togglePopupPhotoVisibility);
 addButtonNode.addEventListener('click', togglePopupPlaceVisibility);
 editbuttonNode.addEventListener('click', togglePopupVisibility);
 editbuttonNode.addEventListener('click', openpopup);
 closebuttonNode.addEventListener('click', togglePopupVisibility);
-submitButtonNode.addEventListener('click',submit);
-submitButtonNode.addEventListener('click',togglePopupVisibility);
+submitButtonNode.addEventListener('click', submit);
+submitButtonNode.addEventListener('click', togglePopupVisibility);
 popupFormNode.addEventListener('submit', submit);
 popupFormNode.addEventListener('submit', togglePopupVisibility);
+
+
 
 

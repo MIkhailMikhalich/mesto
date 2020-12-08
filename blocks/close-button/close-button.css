@@ -16,13 +16,15 @@
   .close-button
   {
     left: 93%;
-    top: -13%;
+    top: -9%;
+    width: 30px;
+    height: 30px;
   }
 }
 @media screen and (max-width: 375px)
 {
   .close-button
   {
-    left: 85%;
+    left: 91%;
   }
 }

@@ -13,5 +13,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
+  opacity: 1;
+  visibility: visible;
+  transition: visibility 1s, opacity 1s ease-out 0.2s;
 
+}
