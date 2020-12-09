@@ -1,12 +1,12 @@
 
 let closebuttonNode = document.querySelector('.popup__close-button');
 let closePlacebuttonNode = document.querySelector('.popup__place-close-button');
-let closePhotobuttonNode = document.querySelector('.popup-photo__close-button');
+let closePhotobuttonNode = document.querySelector('.popupphoto__close-button');
 let editbuttonNode = document.querySelector('.profile__edit-button');
 let popupNode = document.querySelector('#popup');
 let popupPlaceNode = document.querySelector('#popup-place');
 let popupPhotoNode = document.querySelector('#popup-photo');
-let photoNode = document.querySelector('.popup-photo__img');
+let photoNode = document.querySelector('.popupphoto__img');
 let popupFormNode = document.querySelector('.popup__form');
 let profileNameNode = document.querySelector('.profile__name');
 let profileInfoNode = document.querySelector('.profile__text');
@@ -85,8 +85,8 @@ function togglePopupPlaceVisibility() {
 }
 function togglePhotoVisibility(link, name) {
   popupPhotoNode.classList.toggle('popup_hidden');
-  document.querySelector('.popup-photo__img').setAttribute('src', `${link}`)
-  document.querySelector('.popup-photo__name').textContent = name;
+  document.querySelector('.popupphoto__img').setAttribute('src', `${link}`)
+  document.querySelector('.popupphoto__name').textContent = name;
 }
 function togglePopupPhotoVisibility() {
   popupPhotoNode.classList.toggle('popup_hidden');
