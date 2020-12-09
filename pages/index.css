@@ -34,9 +34,9 @@
 @import url(../blocks/button/__img/button__img.css);
 @import url(../blocks/photocards/__likeimg-fill/photocards__likeimg-fill.css);
 @import url(../blocks/photocards/__like-button/photocards__like-button.css);
-@import url(../blocks/popupphoto/__img/popupphoto__img.css);
 @import url(../blocks/photocards/__photo-button/photocards__photo-button.css);
-@import url(../blocks/popupphoto/__window/popupphoto__window.css);
-@import url(../blocks/popupphoto/__close-button/popupphoto__close-button.css);
-@import url(../blocks/popupphoto/__name/popupphoto__name.css);
 @import url(../blocks/photocards/__delete-button/photocards__delete-button.css);
+@import url(../blocks/popup/__photo-close-button/popup__photo-close-button.css);
+@import url(../blocks/popup/__photo-img/popup__photo-img.css);
+@import url(../blocks/popup/__photo-name/popup__photo-name.css);
+@import url(../blocks/popup/__photo-window/popup__photo-window.css);
