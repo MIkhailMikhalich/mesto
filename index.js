@@ -15,10 +15,10 @@ const submitPlaceButtonNode = document.querySelector('.popup__place-save-button'
 const addButtonNode = document.querySelector('.profile__add-button');
 const popupPhotoImg = document.querySelector('.popup__photo-img');
 const popupPhotoName =  document.querySelector('.popup__photo-name');
-let nameInput = document.querySelector('.popup__name-input');
-let placeNameInput = document.querySelector('.popup__place-name-input');
-let infoInput = document.querySelector('.popup__info-input');
-let srcInput = document.querySelector('.popup__src-input');
+const nameInput = document.querySelector('.popup__name-input');
+const placeNameInput = document.querySelector('.popup__place-name-input');
+const infoInput = document.querySelector('.popup__info-input');
+const srcInput = document.querySelector('.popup__src-input');
 
 
 const photoTemplate = document.querySelector('#photocard');

@@ -1,11 +1,11 @@
-.popup__secondinput
+.popup__second-input
 {
   margin-bottom: 48px;
   padding: 0;
 }
 @media screen and (max-width: 425px)
 {
-  .popup__secondinput
+  .popup__second-input
   {
     margin-bottom: 45px;
   }
