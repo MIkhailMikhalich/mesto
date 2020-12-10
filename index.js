@@ -7,7 +7,8 @@ const popupNode = document.querySelector('#popup');
 const popupPlaceNode = document.querySelector('#popup-place');
 const popupPhotoNode = document.querySelector('#popup-photo');
 const photo = document.querySelector('.popup__photo-img');
-const popupForm = document.querySelector('.popup__form');
+const profileForm = document.querySelector('#profile-form');
+const placeForm = document.querySelector('#place-form');
 const profileName = document.querySelector('.profile__name');
 const profileInfo = document.querySelector('.profile__text');
 const submitButtonNode = document.querySelector('.popup__save-button');
@@ -115,10 +116,10 @@ function addToGrid(a)
 closePhotobuttonNode.addEventListener('click', function () {togglePopupVisibility(popupPhotoNode)});
 closePlacebuttonNode.addEventListener('click', function (event) {event.preventDefault(); togglePopupVisibility(popupPlaceNode)});
 addButtonNode.addEventListener('click', function (event) {event.preventDefault(); togglePopupVisibility(popupPlaceNode)});
-editbuttonNode.addEventListener('click', function (event) {event.preventDefault(); openPopup(); togglePopupVisibility(popupNode)});
+editbuttonNode.addEventListener('click', function (event) {event.preventDefault(); openPopupProfile(); togglePopupVisibility(popupNode)});
 closebuttonNode.addEventListener('click', function (event) {event.preventDefault(); togglePopupVisibility(popupNode)});
-popupForm.addEventListener('submit', function (event) {event.preventDefault(); submitProfile(); togglePopupVisibility(popupNode)});
-popupForm.addEventListener('submit', function (event) {event.preventDefault(); addToGrid(submitPhotoCard()); togglePopupVisibility(popupPlaceNode)});
+profileForm.addEventListener('submit', function (event) {event.preventDefault(); submitProfile(); togglePopupVisibility(popupNode)});
+placeForm.addEventListener('submit', function (event) {event.preventDefault(); addToGrid(submitPhotoCard()); togglePopupVisibility(popupPlaceNode)});
 
 
 
