@@ -1,4 +1,4 @@
-.button__close-button
+.button__close
 {
   transform: rotate(-45deg);
   position: absolute;
@@ -13,7 +13,7 @@
 
 @media screen and (max-width: 550px)
 {
-  .button__close-button
+  .button__close
   {
     left: 93%;
     top: -9%;
@@ -23,7 +23,7 @@
 }
 @media screen and (max-width: 375px)
 {
-  .button__close-button
+  .button__close
   {
     left: 91%;
   }
