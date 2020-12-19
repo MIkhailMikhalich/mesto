@@ -1,4 +1,4 @@
-.input
+.popup__input
 {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -9,17 +9,18 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.input:active,
-.input:hover,
-.input:focus {
+.popup__input:active,
+.popup__input:hover,
+.popup__input:focus {
 outline: none;
 }
 
-.input::placeholder {
+.popup__input::placeholder {
   transition: 0.5s;
   color: #aaa;
 }
-.input:focus::placeholder {
+.popup__input:focus::placeholder {
   font-size: 10px;
   transform: translateY(-10px);
 }
+

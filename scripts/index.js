@@ -15,17 +15,15 @@ const submitButtonNode = document.querySelector('.popup__save-button');
 const submitPlaceButtonNode = document.querySelector('.popup__place-save-button');
 const addButtonNode = document.querySelector('.profile__add-button');
 const popupPhotoImg = document.querySelector('.popup__photo-img');
-const popupPhotoName =  document.querySelector('.popup__photo-name');
+const popupPhotoName = document.querySelector('.popup__photo-name');
 const nameInput = document.querySelector('.popup__name-input');
 const placeNameInput = document.querySelector('.popup__place-name-input');
 const infoInput = document.querySelector('.popup__info-input');
 const srcInput = document.querySelector('.popup__src-input');
-
-
+const overlay = document.querySelectorAll('.popup__overlay');
 const photoTemplate = document.querySelector('#photocard');
 const photocards = document.querySelector('.photocards');
 const namelikearea = document.querySelector('.photocards__name-like-area');
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -74,19 +72,21 @@ function addPhotoCard(name, link) {
   placename.textContent = name;
   photo.src = link;
   photo.alt = `Фото ${name}`;
-  deleteButtonNode.addEventListener('click',function () { removeElement(deleteButtonNode) });
-  photoButtonNode.addEventListener('click', function () { addPhotoSrc(link, name); togglePopupVisibility(popupPhotoNode)});
+  deleteButtonNode.addEventListener('click', function () { removeElement(deleteButtonNode) });
+  photoButtonNode.addEventListener('click', function () { addPhotoSrc(link, name); enablePopupVisibility(popupPhotoNode) });
   likeButtonNode.addEventListener('click', function (a) { onLikeButtonNode(a.currentTarget) });
   return photoElement;
 
 }
-function togglePopupVisibility(popup) {
-  popup.classList.toggle('popup_hidden');
+function enablePopupVisibility(popup) {
+  popup.classList.remove('popup_hidden');
 }
-
+function disablePopupVisibility(popup) {
+  popup.classList.add('popup_hidden');
+}
 function addPhotoSrc(link, name) {
   popupPhotoImg.setAttribute('src', `${link}`)
-  popupPhotoImg.setAttribute('alt',`Фото ${name}`)
+  popupPhotoImg.setAttribute('alt', `Фото ${name}`)
   popupPhotoName.textContent = name;
 
 }
@@ -103,23 +103,33 @@ function openPopupProfile() {
 function onLikeButtonNode(like) {
   like.classList.toggle('photocards__likeimg-fill')
 }
-function removeElement(a)
-{
+function removeElement(a) {
   const closestparent = a.parentElement;
   closestparent.remove();
 }
-function addToGrid(a)
-{
+function addToGrid(a) {
   photocards.prepend(a);
 }
 
-closePhotobuttonNode.addEventListener('click', function () {togglePopupVisibility(popupPhotoNode)});
-closePlacebuttonNode.addEventListener('click', function (event) {event.preventDefault(); togglePopupVisibility(popupPlaceNode)});
-addButtonNode.addEventListener('click', function (event) {event.preventDefault(); togglePopupVisibility(popupPlaceNode)});
-editbuttonNode.addEventListener('click', function (event) {event.preventDefault(); openPopupProfile(); togglePopupVisibility(popupNode)});
-closebuttonNode.addEventListener('click', function (event) {event.preventDefault(); togglePopupVisibility(popupNode)});
-profileForm.addEventListener('submit', function (event) {event.preventDefault(); submitProfile(); togglePopupVisibility(popupNode)});
-placeForm.addEventListener('submit', function (event) {event.preventDefault(); addToGrid(submitPhotoCard()); togglePopupVisibility(popupPlaceNode)});
+
+
+
+
+overlay.forEach(function(a){a.addEventListener('click', function (currentTarget) {const currentpopup = currentTarget.currentTarget;
+  disablePopupVisibility(currentpopup.parentElement)})});
+document.addEventListener('keydown', function(event){const key = event.key ;if (key === "Escape")
+  disablePopupVisibility(popupNode)});
+document.addEventListener('keydown',function(event){const key = event.key ;if (key === "Escape")
+  disablePopupVisibility(popupPlaceNode)});
+document.addEventListener('keydown',function(event){const key = event.key ;if (key === "Escape")
+  disablePopupVisibility(popupPhotoNode)});
+closePhotobuttonNode.addEventListener('click', function () { disablePopupVisibility(popupPhotoNode) });
+closePlacebuttonNode.addEventListener('click', function (event) { event.preventDefault(); disablePopupVisibility(popupPlaceNode) });
+addButtonNode.addEventListener('click', function (event) { event.preventDefault(); enablePopupVisibility(popupPlaceNode) });
+editbuttonNode.addEventListener('click', function (event) { event.preventDefault(); openPopupProfile(); enablePopupVisibility(popupNode) });
+closebuttonNode.addEventListener('click', function (event) { event.preventDefault(); disablePopupVisibility(popupNode) });
+profileForm.addEventListener('submit', function (event) { event.preventDefault(); submitProfile(); disablePopupVisibility(popupNode) });
+placeForm.addEventListener('submit', function (event) { event.preventDefault(); addToGrid(submitPhotoCard()); disablePopupVisibility(popupPlaceNode) });
 
 
 

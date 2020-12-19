@@ -35,36 +35,42 @@
       <p class="footer__copyright">&copy;2020 Mesto Russia</p>
     </footer>
     <div id="popup" class="popup popup_hidden">
+      <button class="button popup__overlay"></button>
       <div class="popup__window">
         <h3 class="popup__heading">Редактировать профиль</h3>
         <button type="button" class="button button_close popup__close-button"> <img class="popup__close-button-img"
             src="./images/plus.svg" alt="крестик"></button>
         <form id="profile-form" name="profile-iformation" class="popup__form">
-          <input name="name" placeholder="Имя" type="text" class=" input popup__first-input popup__name-input">
-          <input name="information" placeholder="Информация" type="text" class=" input popup__second-input popup__info-input">
 
-          <button type="submit" class="popup__save-button  button">
+          <input name="name" id="profile-name" placeholder="Имя" type="text" class=" popup__input popup__first-input popup__name-input" required minlength="2" maxlength="40" novalidate>
+          <span id="profile-name-error" class="popup__error-message"></span>
+          <input name="information" id="profile-information" placeholder="Информация" type="text" class=" popup__input popup__second-input popup__info-input" required minlength="2" maxlength="200" novalidate>
+          <span id="profile-information-error" class="popup__error-message"></span>
+          <button type="submit" class="popup__save-button popup__save-button_disabled button">
             Сохранить
           </button>
         </form>
       </div>
     </div>
     <div id="popup-place" class="popup popup_hidden">
+      <button class="button popup__overlay"></button>
       <div class="popup__window">
         <h3 class="popup__heading">Новое место</h3>
         <button type="button" class="button button_close popup__place-close-button"> <img
             class="popup__close-button-img" src="./images/plus.svg" alt="крестик"></button>
         <form id="place-form" name="photo-iformation" class="popup__form">
-          <input name="name" placeholder="Название" type="text" class=" input popup__first-input popup__place-name-input">
-          <input name="src" placeholder="Ссылка на картинку" type="text" class=" input popup__second-input  popup__src-input">
-
-          <button type="submit" class="popup__place-save-button popup__save-button button">
+          <input name="name" id="place-name" placeholder="Название" type="text" class=" popup__input popup__first-input popup__place-name-input" required minlength="2" maxlength="30" novalidate>
+          <span id="place-name-error" class="popup__error-message"></span>
+          <input name="src" id="place-src" placeholder="Ссылка на картинку" type="url" class=" popup__input popup__second-input  popup__src-input" required novalidate>
+          <span id="place-src-error" class=" popup__error-message"></span>
+          <button type="submit" class="popup__save-button popup__save-button_disabled button">
             Сохранить
           </button>
         </form>
       </div>
     </div>
     <div id="popup-photo" class="popup popup_hidden">
+      <button class="button popup__overlay"></button>
       <div class="popup__photo-window">
         <button type="button" class="button button_close popup__photo-close-button"> <img
             class="popup__close-button-img" src="./images/plus.svg" alt="крестик"></button>
@@ -89,7 +95,8 @@
       </div>
     </div>
   </template>
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
+  <script src="./scripts/validationConfig.js"></script>
 </body>
 
 </html>
