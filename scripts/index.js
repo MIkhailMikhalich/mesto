@@ -50,10 +50,12 @@ function createCard(name, link) {
 
 function enablePopupVisibility(popup) {
   popup.classList.remove('popup_hidden');
+  document.addEventListener('keydown', function(event){closeByESC(event, popup)});
 }
 
 function disablePopupVisibility(popup) {
   popup.classList.add('popup_hidden');
+  document.removeEventListener('keydown', function(event){closeByESC(event, popup)});
 }
 
 function addPhotoSrc(link, name) {
@@ -114,13 +116,11 @@ addButtonNode.addEventListener('click', function (event) {
   placeNameInput.value="";
   srcInput.value="";
   setButtonState(placeForm.querySelector(validationConfig.submitButtonSelector), placeForm.checkValidity(), validationConfig);
-  document.addEventListener('keydown', function(event){closeByESC(event, popupPlaceNode)});
 });
 editbuttonNode.addEventListener('click', function (event) {
   event.preventDefault();
   openPopupProfile();
   enablePopupVisibility(popupNode)
-  document.addEventListener('keydown', function(event){closeByESC(event, popupNode)});
 });
 closebuttonNode.addEventListener('click', function (event) {
   event.preventDefault();
