@@ -90,11 +90,12 @@ function addToGrid(card) {
 
 function closeByESC(event) {
   const key = event.key;
-  const popup = document.querySelector('.popup_visible')
-  if (key === "Escape")
-    disablePopupVisibility(popup)
-}
 
+  if (key === "Escape"){
+    const popup = document.querySelector('.popup_visible');
+    disablePopupVisibility(popup);
+}
+}
 
 
 
