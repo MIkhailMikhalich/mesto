@@ -49,13 +49,13 @@ function createCard(name, link) {
 }
 
 function enablePopupVisibility(popup) {
-  popup.classList.remove('popup_hidden');
-  document.addEventListener('keydown', function(event){closeByESC(event, popup)});
+  popup.classList.add('popup_visible');
+  document.addEventListener('keydown', closeByESC);
 }
 
 function disablePopupVisibility(popup) {
-  popup.classList.add('popup_hidden');
-  document.removeEventListener('keydown', function(event){closeByESC(event, popup)});
+  popup.classList.remove('popup_visible');
+  document.removeEventListener('keydown', closeByESC);
 }
 
 function addPhotoSrc(link, name) {
@@ -88,8 +88,9 @@ function addToGrid(card) {
   photocards.prepend(card);
 }
 
-function closeByESC(event, popup) {
+function closeByESC(event) {
   const key = event.key;
+  const popup = document.querySelector('.popup_visible')
   if (key === "Escape")
     disablePopupVisibility(popup)
 }
