@@ -12,23 +12,26 @@ function showErr(form, input, config)
   errormes.textContent = input.validationMessage;
   input.classList.add(config.inputInvalidClass);
 }
+
 function hideErr(form, input, config)
 {
   const errormes = form.querySelector(`#${input.id}-error`);
   errormes.textContent = "";
   input.classList.remove(config.inputInvalidClass);
 }
-function checkValidity(form,input,config)
+
+function checkValidity(form, input, config)
 {
   if(input.validity.valid){
-    hideErr(form,input,config);
+    hideErr(form, input, config);
   }
   else
   {
-    showErr(form,input,config);
+    showErr(form, input, config);
   }
 }
-function setButtonState(button, isActive,config)
+
+function setButtonState(button, isActive, config)
 {
 
   if (isActive)
@@ -42,7 +45,8 @@ function setButtonState(button, isActive,config)
     button.disabled = true;
   }
 }
-function setEvents(form,config)
+
+function setEvents(form, config)
 {
   const inputList = form.querySelectorAll(config.inputSelector);
   const saveButton = form.querySelector(config.submitButtonSelector)

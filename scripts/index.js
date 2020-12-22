@@ -12,7 +12,6 @@ const placeForm = document.querySelector('#place-form');
 const profileName = document.querySelector('.profile__name');
 const profileInfo = document.querySelector('.profile__text');
 const submitButtonNode = document.querySelector('.popup__save-button');
-const submitPlaceButtonNode = document.querySelector('.popup__place-save-button');
 const addButtonNode = document.querySelector('.profile__add-button');
 const popupPhotoImg = document.querySelector('.popup__photo-img');
 const popupPhotoName = document.querySelector('.popup__photo-name');
@@ -24,44 +23,14 @@ const overlay = document.querySelectorAll('.popup__overlay');
 const photoTemplate = document.querySelector('#photocard');
 const photocards = document.querySelector('.photocards');
 const namelikearea = document.querySelector('.photocards__name-like-area');
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-initialCards.forEach(
-  function (element) {
-    const cardname = element.name;
-    const src = element.link;
-    addToGrid(addPhotoCard(cardname, src));
-  });
-function submitPhotoCard() {
+
+function getFilledCard() {
   const name = placeNameInput.value;
   const src = srcInput.value;
-  return addPhotoCard(name, src);
+  return createCard(name, src);
 }
-function addPhotoCard(name, link) {
+
+function createCard(name, link) {
   const photoElement = photoTemplate.content.cloneNode(true);
   const likeButtonNode = photoElement.querySelector('.photocards__like-button');
   const photoButtonNode = photoElement.querySelector('.photocards__photo-button');
@@ -78,12 +47,15 @@ function addPhotoCard(name, link) {
   return photoElement;
 
 }
+
 function enablePopupVisibility(popup) {
   popup.classList.remove('popup_hidden');
 }
+
 function disablePopupVisibility(popup) {
   popup.classList.add('popup_hidden');
 }
+
 function addPhotoSrc(link, name) {
   popupPhotoImg.setAttribute('src', `${link}`)
   popupPhotoImg.setAttribute('alt', `Фото ${name}`)
@@ -100,36 +72,70 @@ function openPopupProfile() {
   nameInput.value = profileName.textContent;
   infoInput.value = profileInfo.textContent;
 }
+
 function onLikeButtonNode(like) {
   like.classList.toggle('photocards__likeimg-fill')
 }
-function removeElement(a) {
-  const closestparent = a.parentElement;
+
+function removeElement(element) {
+  const closestparent = element.parentElement;
   closestparent.remove();
 }
-function addToGrid(a) {
-  photocards.prepend(a);
+
+function addToGrid(card) {
+  photocards.prepend(card);
+}
+
+function closeByESC(event, popup) {
+  const key = event.key;
+  if (key === "Escape")
+    disablePopupVisibility(popup)
 }
 
 
 
 
-
-overlay.forEach(function(a){a.addEventListener('click', function (currentTarget) {const currentpopup = currentTarget.currentTarget;
-  disablePopupVisibility(currentpopup.parentElement)})});
-document.addEventListener('keydown', function(event){const key = event.key ;if (key === "Escape")
-  disablePopupVisibility(popupNode)});
-document.addEventListener('keydown',function(event){const key = event.key ;if (key === "Escape")
-  disablePopupVisibility(popupPlaceNode)});
-document.addEventListener('keydown',function(event){const key = event.key ;if (key === "Escape")
-  disablePopupVisibility(popupPhotoNode)});
-closePhotobuttonNode.addEventListener('click', function () { disablePopupVisibility(popupPhotoNode) });
-closePlacebuttonNode.addEventListener('click', function (event) { event.preventDefault(); disablePopupVisibility(popupPlaceNode) });
-addButtonNode.addEventListener('click', function (event) { event.preventDefault(); enablePopupVisibility(popupPlaceNode) });
-editbuttonNode.addEventListener('click', function (event) { event.preventDefault(); openPopupProfile(); enablePopupVisibility(popupNode) });
-closebuttonNode.addEventListener('click', function (event) { event.preventDefault(); disablePopupVisibility(popupNode) });
-profileForm.addEventListener('submit', function (event) { event.preventDefault(); submitProfile(); disablePopupVisibility(popupNode) });
-placeForm.addEventListener('submit', function (event) { event.preventDefault(); addToGrid(submitPhotoCard()); disablePopupVisibility(popupPlaceNode) });
+overlay.forEach(function (a) {
+  a.addEventListener('click', function (currentTarget) {
+    const currentpopup = currentTarget.currentTarget;
+    disablePopupVisibility(currentpopup.parentElement)
+  })
+});
+closePhotobuttonNode.addEventListener('click', function () {
+  disablePopupVisibility(popupPhotoNode)
+});
+closePlacebuttonNode.addEventListener('click', function (event) {
+  event.preventDefault();
+  disablePopupVisibility(popupPlaceNode)
+});
+addButtonNode.addEventListener('click', function (event) {
+  event.preventDefault();
+  enablePopupVisibility(popupPlaceNode);
+  placeNameInput.value="";
+  srcInput.value="";
+  setButtonState(placeForm.querySelector(validationConfig.submitButtonSelector), placeForm.checkValidity(), validationConfig);
+  document.addEventListener('keydown', function(event){closeByESC(event, popupPlaceNode)});
+});
+editbuttonNode.addEventListener('click', function (event) {
+  event.preventDefault();
+  openPopupProfile();
+  enablePopupVisibility(popupNode)
+  document.addEventListener('keydown', function(event){closeByESC(event, popupNode)});
+});
+closebuttonNode.addEventListener('click', function (event) {
+  event.preventDefault();
+  disablePopupVisibility(popupNode)
+});
+profileForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  submitProfile();
+  disablePopupVisibility(popupNode)
+});
+placeForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  addToGrid(getFilledCard());
+  disablePopupVisibility(popupPlaceNode)
+});
 
 
 
