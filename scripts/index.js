@@ -1,18 +1,20 @@
+import initialCards from './InitialCards.js';
+import Card from './Card.js'
 
+const placeForm = document.querySelector('#place-form');
+const addButtonNode = document.querySelector('.profile__add-button');
 const closebuttonNode = document.querySelector('.popup__close-button');
 const closePlacebuttonNode = document.querySelector('.popup__place-close-button');
 const closePhotobuttonNode = document.querySelector('.popup__photo-close-button');
 const editbuttonNode = document.querySelector('.profile__edit-button');
 const popupNode = document.querySelector('#popup');
+const popupPhotoImg = document.querySelector('.popup__photo-img');
+const popupPhotoName = document.querySelector('.popup__photo-name');
 const popupPlaceNode = document.querySelector('#popup-place');
 const popupPhotoNode = document.querySelector('#popup-photo');
-const photo = document.querySelector('.popup__photo-img');
 const profileForm = document.querySelector('#profile-form');
 const profileName = document.querySelector('.profile__name');
 const profileInfo = document.querySelector('.profile__text');
-const submitButtonNode = document.querySelector('.popup__save-button');
-const popupPhotoImg = document.querySelector('.popup__photo-img');
-const popupPhotoName = document.querySelector('.popup__photo-name');
 const nameInput = document.querySelector('.popup__name-input');
 const placeNameInput = document.querySelector('.popup__place-name-input');
 const infoInput = document.querySelector('.popup__info-input');
@@ -20,7 +22,7 @@ const srcInput = document.querySelector('.popup__src-input');
 const overlay = document.querySelectorAll('.popup__overlay');
 const photoTemplate = document.querySelector('#photocard');
 const photocards = document.querySelector('.photocards');
-const namelikearea = document.querySelector('.photocards__name-like-area');
+
 
 
 
@@ -34,7 +36,7 @@ function disablePopupVisibility(popup) {
   document.removeEventListener('keydown', closeByESC);
 }
 
-
+export {enablePopupVisibility,popupPhotoNode,popupPhotoImg,popupPhotoName};
 
 function submitProfile() {
   profileName.textContent = nameInput.value;
@@ -61,6 +63,28 @@ function closeByESC(event) {
 }
 }
 
+initialCards.forEach(
+  function (element) {
+    const card = new Card(element.name, element.link, photoTemplate);
+    const cardElament = card.createCard();
+    addToGrid(cardElament);
+  });
+function getFilledCard() {
+  const card = new Card(placeNameInput.value, srcInput.value, photoTemplate)
+  return card.createCard();
+}
+addButtonNode.addEventListener('click', function (event) {
+  event.preventDefault();
+  enablePopupVisibility(popupPlaceNode);
+  placeNameInput.value = "";
+  srcInput.value = "";
+  setButtonState(placeForm.querySelector(validationConfig.submitButtonSelector), placeForm.checkValidity(), validationConfig);
+});
+placeForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  addToGrid(getFilledCard());
+  disablePopupVisibility(popupPlaceNode)
+});
 
 
 overlay.forEach(function (a) {
