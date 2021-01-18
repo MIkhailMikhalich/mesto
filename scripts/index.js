@@ -1,5 +1,8 @@
 import initialCards from './InitialCards.js';
-import Card from './Card.js'
+import Card from './Card.js';
+import validationConfig from './validationConfig.js';
+import FormValidator from './FormValidator.js';
+export {enablePopupVisibility,popupPhotoNode,popupPhotoImg,popupPhotoName};
 
 const placeForm = document.querySelector('#place-form');
 const addButtonNode = document.querySelector('.profile__add-button');
@@ -24,7 +27,10 @@ const photoTemplate = document.querySelector('#photocard');
 const photocards = document.querySelector('.photocards');
 
 
-
+const placevalidator = new FormValidator(placeForm,validationConfig);
+placevalidator.enableValidate();
+const profilevalidator = new FormValidator(profileForm,validationConfig);
+profilevalidator.enableValidate();
 
 function enablePopupVisibility(popup) {
   popup.classList.add('popup_visible');
@@ -36,7 +42,6 @@ function disablePopupVisibility(popup) {
   document.removeEventListener('keydown', closeByESC);
 }
 
-export {enablePopupVisibility,popupPhotoNode,popupPhotoImg,popupPhotoName};
 
 function submitProfile() {
   profileName.textContent = nameInput.value;
@@ -63,12 +68,8 @@ function closeByESC(event) {
 }
 }
 
-initialCards.forEach(
-  function (element) {
-    const card = new Card(element.name, element.link, photoTemplate);
-    const cardElament = card.createCard();
-    addToGrid(cardElament);
-  });
+
+
 function getFilledCard() {
   const card = new Card(placeNameInput.value, srcInput.value, photoTemplate)
   return card.createCard();
@@ -78,7 +79,7 @@ addButtonNode.addEventListener('click', function (event) {
   enablePopupVisibility(popupPlaceNode);
   placeNameInput.value = "";
   srcInput.value = "";
-  setButtonState(placeForm.querySelector(validationConfig.submitButtonSelector), placeForm.checkValidity(), validationConfig);
+
 });
 placeForm.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -86,6 +87,12 @@ placeForm.addEventListener('submit', function (event) {
   disablePopupVisibility(popupPlaceNode)
 });
 
+initialCards.forEach(
+  function (element) {
+    const card = new Card(element.name, element.link, photoTemplate);
+    const cardElament = card.createCard();
+    addToGrid(cardElament);
+  });
 
 overlay.forEach(function (a) {
   a.addEventListener('click', function (currentTarget) {
