@@ -66,6 +66,9 @@ _setEvents()
 }
 resetValidation()
 {
+
+  this.inputList.forEach((input)=>{this._form.querySelector(`#${input.id}-error`).textContent="";
+  input.classList.remove(this._config.inputInvalidClass)});
       this._setButtonState(this.saveButton,this._form.checkValidity(),this._config);
 
 }
