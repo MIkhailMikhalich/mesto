@@ -22,7 +22,7 @@ const nameInput = document.querySelector('.popup__name-input');
 const placeNameInput = document.querySelector('.popup__place-name-input');
 const infoInput = document.querySelector('.popup__info-input');
 const srcInput = document.querySelector('.popup__src-input');
-const overlay = document.querySelectorAll('.popup__overlay');
+const overlays = document.querySelectorAll('.popup__overlay');
 const photoTemplate = document.querySelector('#photocard');
 const photocards = document.querySelector('.photocards');
 
@@ -70,8 +70,8 @@ function closeByESC(event) {
 
 
 
-function getFilledCard() {
-  const card = new Card(placeNameInput.value, srcInput.value, photoTemplate)
+function getFilledCard(name, link) {
+  const card = new Card(name, link, photoTemplate)
   return card.createCard();
 }
 addButtonNode.addEventListener('click', function (event) {
@@ -79,23 +79,23 @@ addButtonNode.addEventListener('click', function (event) {
   enablePopupVisibility(popupPlaceNode);
   placeNameInput.value = "";
   srcInput.value = "";
+  placevalidator.resetValidation();
 
 });
 placeForm.addEventListener('submit', function (event) {
   event.preventDefault();
-  addToGrid(getFilledCard());
+  addToGrid(getFilledCard(placeNameInput.value, srcInput.value));
   disablePopupVisibility(popupPlaceNode)
 });
 
 initialCards.forEach(
   function (element) {
-    const card = new Card(element.name, element.link, photoTemplate);
-    const cardElament = card.createCard();
-    addToGrid(cardElament);
+     addToGrid(
+      getFilledCard(element.name, element.link));
   });
 
-overlay.forEach(function (a) {
-  a.addEventListener('click', function (currentTarget) {
+overlays.forEach(function (overlay) {
+  overlay.addEventListener('click', function (currentTarget) {
     const currentpopup = currentTarget.currentTarget;
     disablePopupVisibility(currentpopup.parentElement)
   })
@@ -113,6 +113,7 @@ editbuttonNode.addEventListener('click', function (event) {
   event.preventDefault();
   openPopupProfile();
   enablePopupVisibility(popupNode)
+  profilevalidator.resetValidation();
 });
 closebuttonNode.addEventListener('click', function (event) {
   event.preventDefault();

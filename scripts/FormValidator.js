@@ -3,10 +3,16 @@ export default class FormValidator
 {
   constructor (form,config)
   {
+
     this._form=form;
     this._config=config;
+    this.inputList = this._form.querySelectorAll(this._config.inputSelector);
+    this.saveButton = this._form.querySelector(this._config.submitButtonSelector);
 
   }
+
+
+
 
 _showErr(input)
 {
@@ -50,25 +56,23 @@ _setButtonState(button, isActive, config)
 
 _setEvents()
 {
-  const inputList = this._form.querySelectorAll(this._config.inputSelector);
-  const saveButton = this._form.querySelector(this._config.submitButtonSelector)
-  inputList.forEach((input)=>{
+
+  this.inputList.forEach((input)=>{
     input.addEventListener('input', (evt)=>{
       this._checkValidity(input);
-      this._setButtonState(saveButton,this._form.checkValidity(),this._config);
+      this._setButtonState(this.saveButton,this._form.checkValidity(),this._config);
     })
   })
 }
+resetValidation()
+{
+      this._setButtonState(this.saveButton,this._form.checkValidity(),this._config);
 
+}
 enableValidate()
 {
-
-  const forms = document.querySelectorAll(this._config.formSelector);
-  forms.forEach(()=>{
-    this._setEvents();
-
-  const saveButton = this._form.querySelector(this._config.submitButtonSelector);
-  this._setButtonState(saveButton,this._form._checkValidity,this._config);
-})
+  this._setEvents();
+  this._setButtonState(this.saveButton,this._form._checkValidity,this._config);
 }
 }
+
