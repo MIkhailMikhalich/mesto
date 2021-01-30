@@ -2,7 +2,8 @@ import initialCards from './InitialCards.js';
 import Card from './Card.js';
 import validationConfig from './validationConfig.js';
 import FormValidator from './FormValidator.js';
-export {enablePopupVisibility,popupPhotoNode,popupPhotoImg,popupPhotoName};
+import { Popup, PopupWithImage, PopupWithForm } from './Popup.js';
+export { popupPhotoImg, popupPhotoName, popupphoto,getFilledCard, profileName, profileInfo, addToGrid };
 
 const placeForm = document.querySelector('#place-form');
 const addButtonNode = document.querySelector('.profile__add-button');
@@ -27,103 +28,53 @@ const photoTemplate = document.querySelector('#photocard');
 const photocards = document.querySelector('.photocards');
 
 
-const placevalidator = new FormValidator(placeForm,validationConfig);
+const placevalidator = new FormValidator(placeForm, validationConfig);
 placevalidator.enableValidate();
-const profilevalidator = new FormValidator(profileForm,validationConfig);
+const profilevalidator = new FormValidator(profileForm, validationConfig);
 profilevalidator.enableValidate();
-
-function enablePopupVisibility(popup) {
-  popup.classList.add('popup_visible');
-  document.addEventListener('keydown', closeByESC);
-}
-
-function disablePopupVisibility(popup) {
-  popup.classList.remove('popup_visible');
-  document.removeEventListener('keydown', closeByESC);
-}
-
-
-function submitProfile() {
-  profileName.textContent = nameInput.value;
-  profileInfo.textContent = infoInput.value;
-}
-
-function openPopupProfile() {
-  nameInput.value = profileName.textContent;
-  infoInput.value = profileInfo.textContent;
-}
-
-
+const popupprofile = new PopupWithForm(popupNode);
+const popupplace = new PopupWithForm(popupPlaceNode);
+const popupphoto = new PopupWithImage(popupPhotoNode, popupPhotoImg, popupPhotoName);
 
 function addToGrid(card) {
   photocards.prepend(card);
 }
 
-function closeByESC(event) {
-  const key = event.key;
-
-  if (key === "Escape"){
-    const popup = document.querySelector('.popup_visible');
-    disablePopupVisibility(popup);
-}
-}
-
-
-
 function getFilledCard(name, link) {
   const card = new Card(name, link, photoTemplate)
   return card.createCard();
 }
-addButtonNode.addEventListener('click', function (event) {
+addButtonNode.addEventListener('click', (event) => {
   event.preventDefault();
-  enablePopupVisibility(popupPlaceNode);
+
+  popupplace.open();
+  popupplace.setEvetListeners();
   placeNameInput.value = "";
   srcInput.value = "";
   placevalidator.resetValidation();
 
 });
-placeForm.addEventListener('submit', function (event) {
-  event.preventDefault();
-  addToGrid(getFilledCard(placeNameInput.value, srcInput.value));
-  disablePopupVisibility(popupPlaceNode)
-});
 
 initialCards.forEach(
   function (element) {
-     addToGrid(
+    addToGrid(
       getFilledCard(element.name, element.link));
   });
 
-overlays.forEach(function (overlay) {
-  overlay.addEventListener('click', function (currentTarget) {
-    const currentpopup = currentTarget.currentTarget;
-    disablePopupVisibility(currentpopup.parentElement)
-  })
-});
 
-closePhotobuttonNode.addEventListener('click', function () {
-  disablePopupVisibility(popupPhotoNode)
-});
-closePlacebuttonNode.addEventListener('click', function (event) {
-  event.preventDefault();
-  disablePopupVisibility(popupPlaceNode)
-});
 
-editbuttonNode.addEventListener('click', function (event) {
+
+
+
+editbuttonNode.addEventListener('click', (event) => {
   event.preventDefault();
-  openPopupProfile();
-  enablePopupVisibility(popupNode)
+
+  popupprofile.openPopupProfile();
+  popupprofile.open();
+  popupprofile.setEvetListeners();
   profilevalidator.resetValidation();
 });
-closebuttonNode.addEventListener('click', function (event) {
-  event.preventDefault();
-  disablePopupVisibility(popupNode)
-});
-profileForm.addEventListener('submit', function (event) {
-  event.preventDefault();
-  submitProfile();
-  disablePopupVisibility(popupNode)
-});
+
 
 
 

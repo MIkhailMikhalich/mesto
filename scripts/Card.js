@@ -1,4 +1,4 @@
-import {enablePopupVisibility,popupPhotoNode,popupPhotoImg,popupPhotoName} from './index.js';
+import {popupphoto,popupPhotoName,popupPhotoImg} from './index.js';
 
 class Card {
   constructor(name, img, template) {
@@ -30,20 +30,11 @@ class Card {
     photo.src = this._img;
     photo.alt = `Фото ${this._name}`;
     deleteButtonNode.addEventListener('click', () => { this._removeElement(deleteButtonNode) });
-    photoButtonNode.addEventListener('click', () => { this._addPhotoSrc(this._img, this._name); enablePopupVisibility(popupPhotoNode) });
+    photoButtonNode.addEventListener('click', () => {popupphoto.open(this._img, this._name),popupphoto.setEvetListeners() });
     likeButtonNode.addEventListener('click', (a) => { this._onLikeButtonNode(a.currentTarget) });
     return photoElement;
 
   }
-
-  _addPhotoSrc() {
-    popupPhotoImg.setAttribute('src', `${this._img}`)
-    popupPhotoImg.setAttribute('alt', `Фото ${this._name}`)
-    popupPhotoName.textContent = this._name;
-
-  }
-
-
 
 }
 export default Card;
