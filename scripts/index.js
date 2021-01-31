@@ -3,7 +3,7 @@ import Card from './Card.js';
 import validationConfig from './validationConfig.js';
 import FormValidator from './FormValidator.js';
 import { Popup, PopupWithImage, PopupWithForm } from './Popup.js';
-export { popupPhotoImg, popupPhotoName, popupphoto,getFilledCard, profileName, profileInfo, addToGrid };
+export { popupPhotoImg, popupPhotoName, popupphoto,getFilledCard, profileName, profileInfo, addToGrid,photoTemplate};
 
 const placeForm = document.querySelector('#place-form');
 const addButtonNode = document.querySelector('.profile__add-button');
@@ -48,10 +48,10 @@ addButtonNode.addEventListener('click', (event) => {
   event.preventDefault();
 
   popupplace.open();
-  popupplace.setEvetListeners();
   placeNameInput.value = "";
   srcInput.value = "";
   placevalidator.resetValidation();
+  popupplace.setEvetListeners();
 
 });
 

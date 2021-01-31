@@ -2,6 +2,7 @@ import { getFilledCard, profileName, profileInfo, addToGrid } from './index.js';
 class Popup {
   constructor(popup_selector) {
     this._popup = popup_selector;
+    this.close = this.close.bind(this);
   }
   open() {
     this._popup.classList.add('popup_visible');
@@ -59,6 +60,7 @@ class PopupWithForm extends Popup {
     super(popup_selector);
     this._popup = popup_selector;
     this._form = form_selector;
+    this._callSubmit = this._callSubmit.bind(this);
     this.name = this._popup.querySelector('.popup__name-input');
     this.info = this._popup.querySelector('.popup__info-input');
   }
@@ -82,35 +84,41 @@ class PopupWithForm extends Popup {
     profileName.textContent = profilename;
     profileInfo.textContent = info;
   };
+
+
+  removeAllListeners() {
+    const popup = document.querySelector('.popup_visible');
+    const closebutton = popup.querySelector('.button_close');
+    const overlay = popup.querySelector('.popup__overlay');
+    closebutton.removeEventListener('click', this.close);
+    document.removeEventListener('keydown', this._closeByESC);
+    overlay.removeEventListener('click', this.close);
+    const form = this._popup.querySelector('.popup__form');
+    form.removeEventListener('submit', this._callSubmit);
+  }
+  _callSubmit(evt) {
+    evt.preventDefault();
+    const prop = this._getInputValues();
+    if (this._popup.classList.contains('profile')) {
+      this._submitProfile(prop[0], prop[1]);
+    }
+    if (this._popup.classList.contains('place')) {
+
+      addToGrid(getFilledCard(prop[0], prop[1]));
+    }
+    this.close();
+    this.removeAllListeners;
+  };
+
   setEvetListeners() {
     const popup = document.querySelector('.popup_visible');
     const closebutton = popup.querySelector('.button_close');
     const overlay = popup.querySelector('.popup__overlay');
-    closebutton.addEventListener('click', () => { this.close() });
-    document.addEventListener('keydown', (evt) => { this._closeByESC(evt, this._popup) });
-    overlay.addEventListener('click', function (currentTarget) {
-      const currentpopup = new Popup(currentTarget.currentTarget.parentElement);
-      currentpopup.close();
-    });
     const form = this._popup.querySelector('.popup__form');
-    form.addEventListener('submit', (evt) => {
-      debugger
-      evt.preventDefault();
-
-      if (this._popup.classList.contains('profile')) {
-        this._submitProfile(this._getInputValues()[0],this._getInputValues()[1]);
-        this.close();
-
-      }
-      if (this._popup.classList.contains('place')) {
-
-        addToGrid(getFilledCard(this._getInputValues()[0],this._getInputValues()[1]));
-        this.close();
-
-      }
-    }
-    )
+    closebutton.addEventListener('click', this.close);
+    document.addEventListener('keydown', this._closeByESC);
+    overlay.addEventListener('click', this.close);
+    form.addEventListener('submit', this._callSubmit);
   }
-};
-
+}
 export { Popup, PopupWithImage, PopupWithForm };
