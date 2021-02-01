@@ -1,4 +1,4 @@
-import { getFilledCard, profileName, profileInfo, addToGrid } from './index.js';
+import { getFilledCard, profile, addToGrid } from './index.js';
 class Popup {
   constructor(popup_selector) {
     this._popup = popup_selector;
@@ -41,6 +41,7 @@ class PopupWithImage extends Popup {
     this._popup = popup_selector;
     this._photonode = photonode;
     this._name = photoname;
+    this.open =  this.open.bind(this);
   };
 
   open(img, name) {
@@ -76,13 +77,12 @@ class PopupWithForm extends Popup {
 
   }
   openPopupProfile() {
-
-    this.name.value = profileName.textContent;
-    this.info.value = profileInfo.textContent;
+    const information=profile.getUserInfo()
+    this.name.value = information.name.textContent;
+    this.info.value = information.info.textContent;
   }
   _submitProfile(profilename, info) {
-    profileName.textContent = profilename;
-    profileInfo.textContent = info;
+    profile.setUserInfo(profilename,info);
   };
 
 

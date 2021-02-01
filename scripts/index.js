@@ -3,7 +3,8 @@ import Card from './Card.js';
 import validationConfig from './validationConfig.js';
 import FormValidator from './FormValidator.js';
 import { Popup, PopupWithImage, PopupWithForm } from './Popup.js';
-export { popupPhotoImg, popupPhotoName, popupphoto,getFilledCard, profileName, profileInfo, addToGrid,photoTemplate};
+import {UserInfo} from './UserInfo.js';
+export { popupPhotoImg, popupPhotoName, popupphoto,getFilledCard, profile, addToGrid,photoTemplate,setData};
 
 const placeForm = document.querySelector('#place-form');
 const addButtonNode = document.querySelector('.profile__add-button');
@@ -29,13 +30,19 @@ const photocards = document.querySelector('.photocards');
 
 
 const placevalidator = new FormValidator(placeForm, validationConfig);
-placevalidator.enableValidate();
 const profilevalidator = new FormValidator(profileForm, validationConfig);
-profilevalidator.enableValidate();
 const popupprofile = new PopupWithForm(popupNode);
 const popupplace = new PopupWithForm(popupPlaceNode);
 const popupphoto = new PopupWithImage(popupPhotoNode, popupPhotoImg, popupPhotoName);
-
+const profile = new UserInfo (profileName,profileInfo);
+function setData()
+{
+  const prop = profile.getUserInfo();
+  profileName.textContent= prop.name;
+  profileInfo.textContent= prop.info;
+}
+placevalidator.enableValidate();
+profilevalidator.enableValidate();
 function addToGrid(card) {
   photocards.prepend(card);
 }
@@ -60,11 +67,6 @@ initialCards.forEach(
     addToGrid(
       getFilledCard(element.name, element.link));
   });
-
-
-
-
-
 
 editbuttonNode.addEventListener('click', (event) => {
   event.preventDefault();

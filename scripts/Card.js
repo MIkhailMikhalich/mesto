@@ -1,10 +1,11 @@
-import {popupphoto,popupPhotoName,popupPhotoImg} from './index.js';
+import {popupphoto} from './index.js';
 
 class Card {
   constructor(name, img, template) {
     this._name = name;
     this._img = img;
     this._template = template;
+    this._handleCardClick = popupphoto.open;
   }
 
   _onLikeButtonNode(like) {
@@ -30,7 +31,7 @@ class Card {
     photo.src = this._img;
     photo.alt = `Фото ${this._name}`;
     deleteButtonNode.addEventListener('click', () => { this._removeElement(deleteButtonNode) });
-    photoButtonNode.addEventListener('click', () => {popupphoto.open(this._img, this._name),popupphoto.setEvetListeners() });
+    photoButtonNode.addEventListener('click', () => {this._handleCardClick(this._img, this._name),popupphoto.setEvetListeners() });
     likeButtonNode.addEventListener('click', (a) => { this._onLikeButtonNode(a.currentTarget) });
     return photoElement;
 
