@@ -4,7 +4,8 @@ import validationConfig from './validationConfig.js';
 import FormValidator from './FormValidator.js';
 import { Popup, PopupWithImage, PopupWithForm } from './Popup.js';
 import {UserInfo} from './UserInfo.js';
-export { popupPhotoImg, popupPhotoName, popupphoto,getFilledCard, profile, addToGrid,photoTemplate,setData};
+import {Section} from './Section.js';
+export { popupPhotoImg, popupPhotoName, popupphoto,getFilledCard, profile, section ,photoTemplate,setData};
 
 const placeForm = document.querySelector('#place-form');
 const addButtonNode = document.querySelector('.profile__add-button');
@@ -28,13 +29,14 @@ const overlays = document.querySelectorAll('.popup__overlay');
 const photoTemplate = document.querySelector('#photocard');
 const photocards = document.querySelector('.photocards');
 
-
+const section = new Section (initialCards,photocards);
 const placevalidator = new FormValidator(placeForm, validationConfig);
 const profilevalidator = new FormValidator(profileForm, validationConfig);
 const popupprofile = new PopupWithForm(popupNode);
 const popupplace = new PopupWithForm(popupPlaceNode);
 const popupphoto = new PopupWithImage(popupPhotoNode, popupPhotoImg, popupPhotoName);
 const profile = new UserInfo (profileName,profileInfo);
+
 function setData()
 {
   const prop = profile.getUserInfo();
@@ -43,9 +45,6 @@ function setData()
 }
 placevalidator.enableValidate();
 profilevalidator.enableValidate();
-function addToGrid(card) {
-  photocards.prepend(card);
-}
 
 function getFilledCard(name, link) {
   const card = new Card(name, link, photoTemplate)
@@ -64,8 +63,7 @@ addButtonNode.addEventListener('click', (event) => {
 
 initialCards.forEach(
   function (element) {
-    addToGrid(
-      getFilledCard(element.name, element.link));
+    section.addItem(getFilledCard(element.name, element.link));
   });
 
 editbuttonNode.addEventListener('click', (event) => {

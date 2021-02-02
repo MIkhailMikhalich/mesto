@@ -1,4 +1,4 @@
-import { getFilledCard, profile, addToGrid } from './index.js';
+import { getFilledCard, profile, section } from './index.js';
 class Popup {
   constructor(popup_selector) {
     this._popup = popup_selector;
@@ -104,7 +104,7 @@ class PopupWithForm extends Popup {
     }
     if (this._popup.classList.contains('place')) {
 
-      addToGrid(getFilledCard(prop[0], prop[1]));
+      section.addItem(getFilledCard(prop[0], prop[1]));
     }
     this.close();
     this.removeAllListeners;

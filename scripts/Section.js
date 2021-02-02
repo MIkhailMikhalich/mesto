@@ -1,15 +1,22 @@
-export default class Sectoin
+ class Section
 {
   constructor (items,container)
   {
     this._items=items;
-    this.renderer();
     this._container=container;
+
   }
 
-  renderer()
+  addItem(item)
   {
+    this._container.prepend(item);
+  }
 
+  _renderer()
+  {
+    this._items.forEach(element => { addItem(element) });
   }
 
 }
+
+export {Section};
