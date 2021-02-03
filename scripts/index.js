@@ -4,17 +4,13 @@ import Card from './Card.js';
 import validationConfig from './validationConfig.js';
 import FormValidator from './FormValidator.js';
 import { Popup, PopupWithImage, PopupWithForm } from './Popup.js';
-import {UserInfo} from './UserInfo.js';
-import {Section} from './Section.js';
-export { popupPhotoImg, popupPhotoName, popupphoto,getFilledCard, profile, section ,photoTemplate,setData};
+import { UserInfo } from './UserInfo.js';
+import { Section } from './Section.js';
 
 const placeForm = document.querySelector('#place-form');
 const addButtonNode = document.querySelector('.profile__add-button');
-const closebuttonNode = document.querySelector('.popup__close-button');
-const closePlacebuttonNode = document.querySelector('.popup__place-close-button');
-const closePhotobuttonNode = document.querySelector('.popup__photo-close-button');
 const editbuttonNode = document.querySelector('.profile__edit-button');
-const popupNode = document.querySelector('#popup');
+const popupProfileNode = document.querySelector('#popup');
 const popupPhotoImg = document.querySelector('.popup__photo-img');
 const popupPhotoName = document.querySelector('.popup__photo-name');
 const popupPlaceNode = document.querySelector('#popup-place');
@@ -26,31 +22,38 @@ const nameInput = document.querySelector('.popup__name-input');
 const placeNameInput = document.querySelector('.popup__place-name-input');
 const infoInput = document.querySelector('.popup__info-input');
 const srcInput = document.querySelector('.popup__src-input');
-const overlays = document.querySelectorAll('.popup__overlay');
 const photoTemplate = document.querySelector('#photocard');
 const photocards = document.querySelector('.photocards');
 
-const section = new Section (initialCards,photocards);
+const section = new Section(initialCards, photocards);
 const placevalidator = new FormValidator(placeForm, validationConfig);
 const profilevalidator = new FormValidator(profileForm, validationConfig);
-const popupprofile = new PopupWithForm(popupNode);
-const popupplace = new PopupWithForm(popupPlaceNode);
-const popupphoto = new PopupWithImage(popupPhotoNode, popupPhotoImg, popupPhotoName);
-const profile = new UserInfo (profileName,profileInfo);
 
-function setData()
-{
-  const prop = profile.getUserInfo();
-  profileName.textContent= prop.name;
-  profileInfo.textContent= prop.info;
-}
+const popupphoto = new PopupWithImage(popupPhotoNode, popupPhotoImg, popupPhotoName);
+const profile = new UserInfo(profileName, profileInfo);
+const popupprofile = new PopupWithForm(popupProfileNode, profile);
+const popupplace = new PopupWithForm(popupPlaceNode);
+
+
 placevalidator.enableValidate();
 profilevalidator.enableValidate();
 
 function getFilledCard(name, link) {
-  const card = new Card(name, link, photoTemplate)
+  const card = new Card(name, link, photoTemplate, popupphoto)
   return card.createCard();
 }
+
+function openPopupProfile() {
+  const information = profile.getUserInfo()
+  nameInput.value = information.name.textContent;
+  infoInput.value = information.info.textContent;
+}
+
+function submitProfile(profilename, info) {
+  profileName.textContent=profilename;
+  profileInfo.textContent=info;
+};
+
 addButtonNode.addEventListener('click', (event) => {
   event.preventDefault();
 
@@ -67,14 +70,29 @@ initialCards.forEach(
     section.addItem(getFilledCard(element.name, element.link));
   });
 
+popupprofile._Form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const properties = popupprofile._GetInputValues();
+  submitProfile(properties[0].value, properties[1].value);
+  popupprofile.close();
+});
+
+popupplace._Form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const properties = popupplace._GetInputValues();
+  section.addItem(getFilledCard(properties[0].value, properties[1].value));
+  popupplace.close()
+});
+
 editbuttonNode.addEventListener('click', (event) => {
   event.preventDefault();
 
-  popupprofile.openPopupProfile();
+  openPopupProfile();
   popupprofile.open();
   popupprofile.setEvetListeners();
   profilevalidator.resetValidation();
 });
+
 
 
 

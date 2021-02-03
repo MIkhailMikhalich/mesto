@@ -1,4 +1,4 @@
-import {setData} from './index.js'
+
 class UserInfo
 {
   constructor(name,info)
@@ -14,7 +14,7 @@ class UserInfo
   {
     this._info=info;
     this._name=name;
-    setData();
+
   }
 }
 export {UserInfo}

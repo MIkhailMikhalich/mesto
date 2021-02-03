@@ -1,39 +1,43 @@
-import {popupphoto} from './index.js';
 
 class Card {
-  constructor(name, img, template) {
-    this._name = name;
-    this._img = img;
-    this._template = template;
-    this._handleCardClick = popupphoto.open;
+  constructor(name, img, template, popupphoto) {
+    this._Name = name;
+    this._Img = img;
+    this._Template = template;
+    this._PopupPhoto=popupphoto;
+    this._HandleCardClick = popupphoto.open;
   }
 
   _onLikeButtonNode(like) {
     like.classList.toggle('photocards__likeimg-fill')
   }
+  _getTemplate() {
+    const cardElement = this._Template.content.querySelector('.photocards__item').cloneNode(true);
+
+    return cardElement;
+  }
 
   _removeElement(element) {
 
-    const closestparent = element.parentElement;
-    closestparent.remove();
+    element.remove();
   }
 
   createCard() {
 
-    const photoElement = this._template.content.cloneNode(true);
-    const likeButtonNode = photoElement.querySelector('.photocards__like-button');
-    const photoButtonNode = photoElement.querySelector('.photocards__photo-button');
-    const deleteButtonNode = photoElement.querySelector('.photocards__delete-button');
-    const placename = photoElement.querySelector('.photocards__place-name');
-    const photo = photoElement.querySelector('.photocards__photo');
+    this._Element = this._getTemplate();
+    const likeButtonNode = this._Element.querySelector('.photocards__like-button');
+    const photoButtonNode = this._Element.querySelector('.photocards__photo-button');
+    const deleteButtonNode = this._Element.querySelector('.photocards__delete-button');
+    const placename = this._Element.querySelector('.photocards__place-name');
+    const photo = this._Element.querySelector('.photocards__photo');
 
-    placename.textContent = this._name;
-    photo.src = this._img;
-    photo.alt = `Фото ${this._name}`;
-    deleteButtonNode.addEventListener('click', () => { this._removeElement(deleteButtonNode) });
-    photoButtonNode.addEventListener('click', () => {this._handleCardClick(this._img, this._name),popupphoto.setEvetListeners() });
+    placename.textContent = this._Name;
+    photo.src = this._Img;
+    photo.alt = `Фото ${this._Name}`;
+    deleteButtonNode.addEventListener('click', () => { this._removeElement(this._Element) });
+    photoButtonNode.addEventListener('click', () => { this._HandleCardClick(this._Img, this._Name),this._PopupPhoto.setEvetListeners() });
     likeButtonNode.addEventListener('click', (a) => { this._onLikeButtonNode(a.currentTarget) });
-    return photoElement;
+    return this._Element;
 
   }
 
