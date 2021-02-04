@@ -3,7 +3,9 @@ import initialCards from './InitialCards.js';
 import Card from './Card.js';
 import validationConfig from './validationConfig.js';
 import FormValidator from './FormValidator.js';
-import { Popup, PopupWithImage, PopupWithForm } from './Popup.js';
+import { Popup } from './Popup.js';
+import { PopupWithForm } from './PopupWithForm.js';
+import { PopupWithImage } from './PopupWithImage.js';
 import { UserInfo } from './UserInfo.js';
 import { Section } from './Section.js';
 
