@@ -4,7 +4,7 @@ class Popup {
   constructor(popup_selector) {
     this._Popup = popup_selector;
     this.close = this.close.bind(this);
-    this.setEvetListeners = this.setEvetListeners.bind(this);
+    this.setEventListeners = this.setEventListeners.bind(this);
     this._closeByESC= this._closeByESC.bind(this);
     this._Closebutton = this._Popup.querySelector('.button_close');
     this._Overlay = this._Popup.querySelector('.popup__overlay');
@@ -27,7 +27,7 @@ class Popup {
       this.close();
     }
   }
-  setEvetListeners() {
+  setEventListeners() {
     this._Closebutton.addEventListener('click', () => { this.close() });
     this._Overlay.addEventListener('click', () => { this.close();});
 

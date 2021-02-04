@@ -11,7 +11,7 @@ import { Section } from './Section.js';
 
 const placeForm = document.querySelector('#place-form');
 const addButtonNode = document.querySelector('.profile__add-button');
-const editbuttonNode = document.querySelector('.profile__edit-button');
+const editButtonNode = document.querySelector('.profile__edit-button');
 const popupProfileNode = document.querySelector('#popup');
 const popupPhotoImg = document.querySelector('.popup__photo-img');
 const popupPhotoName = document.querySelector('.popup__photo-name');
@@ -25,23 +25,24 @@ const placeNameInput = document.querySelector('.popup__place-name-input');
 const infoInput = document.querySelector('.popup__info-input');
 const srcInput = document.querySelector('.popup__src-input');
 const photoTemplate = document.querySelector('#photocard');
-const photocards = document.querySelector('.photocards');
+const photoCards = document.querySelector('.photocards');
 
-const section = new Section(initialCards, photocards);
-const placevalidator = new FormValidator(placeForm, validationConfig);
-const profilevalidator = new FormValidator(profileForm, validationConfig);
+const section = new Section(initialCards, photoCards);
+const placeValidator = new FormValidator(placeForm, validationConfig);
+const profileValidator = new FormValidator(profileForm, validationConfig);
 
-const popupphoto = new PopupWithImage(popupPhotoNode, popupPhotoImg, popupPhotoName);
+const popupPhoto = new PopupWithImage(popupPhotoNode, popupPhotoImg, popupPhotoName);
 const profile = new UserInfo(profileName, profileInfo);
-const popupprofile = new PopupWithForm(popupProfileNode, profile);
-const popupplace = new PopupWithForm(popupPlaceNode);
+const popupProfile = new PopupWithForm(popupProfileNode,handleProfileFormSubmit);
+const popupPlace = new PopupWithForm(popupPlaceNode,handlePlaceFormSubmit);
 
 
-placevalidator.enableValidate();
-profilevalidator.enableValidate();
+
+placeValidator.enableValidate();
+profileValidator.enableValidate();
 
 function getFilledCard(name, link) {
-  const card = new Card(name, link, photoTemplate, popupphoto)
+  const card = new Card(name, link, photoTemplate, popupPhoto)
   return card.createCard();
 }
 
@@ -59,40 +60,39 @@ function submitProfile(profilename, info) {
 addButtonNode.addEventListener('click', (event) => {
   event.preventDefault();
 
-  popupplace.open();
+  popupPlace.open();
   placeNameInput.value = "";
   srcInput.value = "";
-  placevalidator.resetValidation();
-  popupplace.setEvetListeners();
+  placeValidator.resetValidation();
+  popupPlace.setEventListeners();
 
 });
+
+function handleProfileFormSubmit(properties)
+{
+    submitProfile(properties[0].value, properties[1].value);
+
+}
+
+function handlePlaceFormSubmit(properties)
+{
+  section.addItem(getFilledCard(properties[0].value, properties[1].value));
+}
 
 initialCards.forEach(
   function (element) {
     section.addItem(getFilledCard(element.name, element.link));
   });
 
-popupprofile._Form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const properties = popupprofile._GetInputValues();
-  submitProfile(properties[0].value, properties[1].value);
-  popupprofile.close();
-});
 
-popupplace._Form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const properties = popupplace._GetInputValues();
-  section.addItem(getFilledCard(properties[0].value, properties[1].value));
-  popupplace.close()
-});
 
-editbuttonNode.addEventListener('click', (event) => {
+editButtonNode.addEventListener('click', (event) => {
   event.preventDefault();
 
   openPopupProfile();
-  popupprofile.open();
-  popupprofile.setEvetListeners();
-  profilevalidator.resetValidation();
+  popupProfile.open();
+  popupProfile.setEventListeners();
+  profileValidator.resetValidation();
 });
 
 

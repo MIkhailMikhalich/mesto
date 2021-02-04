@@ -1,26 +1,30 @@
-import {Popup} from './Popup.js';
+import { Popup } from './Popup.js';
 
 class PopupWithForm extends Popup {
-  constructor(popup_selector) {
+  constructor(popup_selector,handleFormSubmit) {
     super(popup_selector);
     this._Popup = popup_selector;
-
+    this._handleFormSubmit =handleFormSubmit;
     this._Form = this._Popup.querySelector('.popup__form');
-    this._GetInputValues = this._GetInputValues.bind(this);
+    this._getInputValues = this._getInputValues.bind(this);
+
+    this.setEvetListeners=this.setEvetListeners.bind(this);
 
   }
-  _GetInputValues()
-  {
+  _getInputValues() {
 
-    return this._Form.elements;
+    return this._Form;
 
   }
 
   setEvetListeners() {
-
-    this._Closebutton.addEventListener('click', this.close);
-    document.addEventListener('keydown', this._closeByESC);
-    this._Overlay.addEventListener('click', this.close);
+    this._Form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._handleFormSubmit(this._getInputValues());
+      this.close();
+    });
+    debugger
+    super.setEventListeners();
   }
 }
-export {PopupWithForm};
+export { PopupWithForm };
