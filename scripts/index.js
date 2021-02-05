@@ -69,7 +69,7 @@ addButtonNode.addEventListener('click', (event) => {
 
 function handleProfileFormSubmit(properties)
 {
-  debugger
+
     submitProfile(properties.first, properties.second);
 
 }
