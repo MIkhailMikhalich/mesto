@@ -3,7 +3,6 @@ import initialCards from './InitialCards.js';
 import Card from './Card.js';
 import validationConfig from './validationConfig.js';
 import FormValidator from './FormValidator.js';
-import { Popup } from './Popup.js';
 import { PopupWithForm } from './PopupWithForm.js';
 import { PopupWithImage } from './PopupWithImage.js';
 import { UserInfo } from './UserInfo.js';
@@ -70,13 +69,14 @@ addButtonNode.addEventListener('click', (event) => {
 
 function handleProfileFormSubmit(properties)
 {
-    submitProfile(properties[0].value, properties[1].value);
+  debugger
+    submitProfile(properties.first, properties.second);
 
 }
 
 function handlePlaceFormSubmit(properties)
 {
-  section.addItem(getFilledCard(properties[0].value, properties[1].value));
+  section.addItem(getFilledCard(properties.first, properties.second));
 }
 
 initialCards.forEach(

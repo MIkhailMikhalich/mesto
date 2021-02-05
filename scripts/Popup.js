@@ -2,21 +2,21 @@ import { esc } from './Constants.js';
 
 class Popup {
   constructor(popup_selector) {
-    this._Popup = popup_selector;
+    this._popup = popup_selector;
     this.close = this.close.bind(this);
     this.setEventListeners = this.setEventListeners.bind(this);
     this._closeByESC= this._closeByESC.bind(this);
-    this._Closebutton = this._Popup.querySelector('.button_close');
-    this._Overlay = this._Popup.querySelector('.popup__overlay');
+    this._closebutton = this._popup.querySelector('.button_close');
+    this._overlay = this._popup.querySelector('.popup__overlay');
 
   }
   open() {
-    this._Popup.classList.add('popup_visible');
+    this._popup.classList.add('popup_visible');
     document.addEventListener('keydown',  this._closeByESC );
   }
 
   close() {
-    this._Popup.classList.remove('popup_visible');
+    this._popup.classList.remove('popup_visible');
     document.removeEventListener('keydown', this._closeByESC );
   }
 
@@ -28,8 +28,8 @@ class Popup {
     }
   }
   setEventListeners() {
-    this._Closebutton.addEventListener('click', () => { this.close() });
-    this._Overlay.addEventListener('click', () => { this.close();});
+    this._closebutton.addEventListener('click', () => { this.close() });
+    this._overlay.addEventListener('click', () => { this.close();});
 
   }
 };
