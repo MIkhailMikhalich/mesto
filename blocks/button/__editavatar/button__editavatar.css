@@ -1,4 +1,4 @@
-.button__edit_avatar
+.button__editavatar
 {
   position: relative;
   max-width: 120px;
@@ -8,7 +8,7 @@
   border-radius: 80px;
   margin-right: 30px;
 }
-.button__edit_avatar:hover
+.button__editavatar:hover
 {
   opacity: 0.8;
 }
