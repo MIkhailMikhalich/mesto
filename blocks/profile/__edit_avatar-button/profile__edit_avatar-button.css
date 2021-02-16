@@ -1,4 +1,4 @@
-.profile__edit-avatar_button{
+.profile__edit_avatar-button{
   position: absolute;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   z-index: 0;
 
 }
-.profile__edit-avatar_button:hover
+.profile__edit_avatar-button:hover
 {
   opacity: 1;
 }

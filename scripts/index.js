@@ -9,7 +9,7 @@ import { Section } from './Section.js';
 import {API} from './API.js';
 import { Popup } from './Popup';
 const profileAvatar = document.querySelector('.profile__avatar');
-const profileAvatarEditButton = document.querySelector('.button__edit-avatar');
+const profileAvatarEditButton = document.querySelector('.button__edit_avatar');
 const popupChangeAvatar = document.querySelector('#popup-changeavatar');
 const popupChangeAvatarForm = document.querySelector('#avatar-form');
 const placeForm = document.querySelector('#place-form');

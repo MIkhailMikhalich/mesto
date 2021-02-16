@@ -9,11 +9,10 @@
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
-@import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__information/profile__information.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__text/profile__text.css);
-@import url(../blocks/profile/__edit-avatar_button/profile__edit-avatar_button.css);
+@import url(../blocks/profile/__edit_avatar-button/profile__edit_avatar-button.css);
 @import url(../blocks/profile/__edit-img/profile__edit-img.css);
 @import url(../blocks/photocards/photocards.css);
 @import url(../blocks/photocards/__item/photocards__item.css);
@@ -32,7 +31,7 @@
 @import url(../blocks/button/_close/button_close.css);
 @import url(../blocks/button/__plus/button__plus.css);
 @import url(../blocks/button/__img/button__img.css);
-@import url(../blocks/button/__edit-avatar/button__edit-avatar.css);
+@import url(../blocks/button/__edit_avatar/button__edit_avatar.css);
 @import url(../blocks/photocards/__likeimg-fill/photocards__likeimg-fill.css);
 @import url(../blocks/photocards/__like-button/photocards__like-button.css);
 @import url(../blocks/photocards/__photo-button/photocards__photo-button.css);
