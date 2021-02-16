@@ -31,7 +31,7 @@
 @import url(../blocks/button/_close/button_close.css);
 @import url(../blocks/button/__plus/button__plus.css);
 @import url(../blocks/button/__img/button__img.css);
-@import url(../blocks/button/__change-avatar/button__change-avatar.css);
+@import url(../blocks/button/_change-avatar/button_change-avatar.css);
 @import url(../blocks/photocards/__likeimg-fill/photocards__likeimg-fill.css);
 @import url(../blocks/photocards/__like-button/photocards__like-button.css);
 @import url(../blocks/photocards/__photo-button/photocards__photo-button.css);
