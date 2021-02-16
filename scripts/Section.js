@@ -1,22 +1,21 @@
  class Section
 {
-  constructor (items,container)
+  constructor (container)
   {
-    this._items=items;
+
     this._container=container;
 
   }
 
   addItem(item)
   {
-    this._container.prepend(item);
+    this._container.append(item);
   }
-
-  _renderer()
+  addMyItem(item)
   {
-    this._items.forEach(element => { addItem(element) });
-  }
+    this._container.prepend(item);
 
+  }
 }
 
 export {Section};

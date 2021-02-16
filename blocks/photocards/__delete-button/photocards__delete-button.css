@@ -5,4 +5,10 @@
   position: absolute;
   right: 15px;
   top: 18px;
+  opacity: 0;
+}
+
+.photocards__delete-button:hover
+{
+  opacity: 0;
 }

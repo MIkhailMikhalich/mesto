@@ -13,9 +13,8 @@ class PopupWithForm extends Popup {
   }
   _getInputValues() {
 
-    const firstInput = this._form.elements.first;
-    const secondInput = this._form.elements.second;
-    return {first:firstInput.value,second:secondInput.value};
+    const inputList = this._form.querySelectorAll(".popup__input")
+    return {inputList};
 
   }
 
@@ -24,7 +23,7 @@ class PopupWithForm extends Popup {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
-      this.close();
+      this._popup.querySelector(".popup__save-button").textContent="Сохранить..."
     });
 
     super.setEventListeners();

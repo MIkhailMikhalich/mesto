@@ -11,15 +11,20 @@
 
 <body class="body">
   <header class="header">
-    <img class="header__logo"  src="<%=require('./images/logo.svg')%>" alt="Логотип">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
   </header>
   <main>
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя">
+      <button class="button button__edit-avatar">
+        <div class="profile__edit-avatar_button">
+          <img class="profile__edit-img" src="<%=require('./images/edit_button_pen.svg')%>">
+        </div>
+        <img class="profile__avatar" src="" alt="Аватар пользователя">
+      </button>
       <div class="profile__information">
         <div>
-          <h1 class=" profile__name">Жак-Ив Кусто</h1>
-          <p class=" profile__text">Исследователь океана</p>
+          <h1 class=" profile__name"></h1>
+          <p class=" profile__text"></p>
         </div>
         <button type="button" class="button  profile__edit-button">
           <img class="button__img" src="<%=require('./images/edit_button.svg')%>" alt="Изменение дланных">
@@ -43,9 +48,12 @@
             src="<%=require('./images/plus.svg')%>" alt="крестик"></button>
         <form id="profile-form" name="profile-iformation" class="popup__form">
 
-          <input name="first" id="profile-name" placeholder="Имя" type="text" class=" popup__input popup__first-input popup__name-input" required minlength="2" maxlength="40" novalidate>
+          <input name="first" id="profile-name" placeholder="Имя" type="text"
+            class=" popup__input popup__first-input popup__name-input" required minlength="2" maxlength="40" novalidate>
           <span id="profile-name-error" class="popup__error-message"></span>
-          <input name="second" id="profile-information" placeholder="Информация" type="text" class=" popup__input popup__second-input popup__info-input" required minlength="2" maxlength="200" novalidate>
+          <input name="second" id="profile-information" placeholder="Информация" type="text"
+            class=" popup__input popup__second-input popup__info-input" required minlength="2" maxlength="200"
+            novalidate>
           <span id="profile-information-error" class="popup__error-message"></span>
           <button type="submit" class="popup__save-button popup__save-button_disabled button">
             Сохранить
@@ -60,9 +68,12 @@
         <button type="button" class="button button_close popup__place-close-button"> <img
             class="popup__close-button-img" src="<%=require('./images/plus.svg')%>" alt="крестик"></button>
         <form id="place-form" name="photo-iformation" class="popup__form">
-          <input name="first" id="place-name" placeholder="Название" type="text" class=" popup__input popup__first-input popup__place-name-input" required minlength="2" maxlength="30" novalidate>
+          <input name="first" id="place-name" placeholder="Название" type="text"
+            class=" popup__input popup__first-input popup__place-name-input" required minlength="2" maxlength="30"
+            novalidate>
           <span id="place-name-error" class="popup__error-message"></span>
-          <input name="second" id="place-src" placeholder="Ссылка на картинку" type="url" class=" popup__input popup__second-input  popup__src-input" required novalidate>
+          <input name="second" id="place-src" placeholder="Ссылка на картинку" type="url"
+            class=" popup__input popup__second-input  popup__src-input" required novalidate>
           <span id="place-src-error" class=" popup__error-message"></span>
           <button type="submit" class="popup__save-button popup__save-button_disabled button">
             Сохранить
@@ -79,6 +90,34 @@
         <p class="popup__photo-name"></p>
       </div>
     </div>
+    <div id="popup-changeavatar" class="popup popup_type_changeavatar">
+      <button class="button popup__overlay"></button>
+      <div class="popup__window">
+        <h3 class="popup__heading">Обновить аватар</h3>
+        <button type="button" class="button button_close popup__close-button"> <img class="popup__close-button-img"
+            src="<%=require('./images/plus.svg')%>" alt="крестик"></button>
+        <form id="avatar-form" name="profile-avatar" class="popup__form">
+          <input name="second" id="profile-avatar" placeholder="Ссылка" type="url"
+            class=" popup__input popup__second-input popup__avatar-link" required novalidate>
+          <span id="profile-avatar-error" class="popup__error-message"></span>
+          <button type="submit" class="popup__save-button popup__save-button_disabled button">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <div id="popup-erase" class="popup popup_type_erase">
+      <button class="button popup__overlay"></button>
+      <div class="popup__window">
+        <h3 class="popup__heading">Вы уверены ?</h3>
+        <button type="button" class="button button_close popup__close-button"> <img class="popup__close-button-img"
+            src="<%=require('./images/plus.svg')%>" alt="крестик"></button>
+        <button id="agree" class="button popup__save-button popup__agree-button">
+          Да
+        </button>
+        </form>
+      </div>
+    </div>
   </main>
   <template id="photocard">
     <div class="photocards__item">
@@ -92,7 +131,9 @@
         <h2 class="  photocards__place-name"></h2>
         <button type="button" class="photocards__like-button  button">
           <img class="photocards__likeimg" src="<%=require('./images/Heart.svg')%>" alt="Сердечко">
+          <p class="photocards__likes">0</p>
         </button>
+
       </div>
     </div>
   </template>
