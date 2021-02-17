@@ -1,8 +1,6 @@
 
 class Card {
-  constructor(data, userid, template, popupphoto, deletepopup, api) {
-
-
+  constructor(data, userid, handleLikeClick, handleCardClick, handleDeleteClick ,template, api) {
     this._name = data.name;
     this._img = data.link;
     this._id = data._id;
@@ -11,12 +9,11 @@ class Card {
     this._owner;
     this._user = userid
     this._template = template;
-    this._popupPhoto = popupphoto;
-    this._handleCardClick = popupphoto.open;
-    this._question = deletepopup;
     this._api = api;
-    this._onLikeButtonNode = this._onLikeButtonNode.bind(this);
-    this._agree = this._agree.bind(this);
+    this._handleLikeClick = handleLikeClick;
+    this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
+
     if (data.owner == undefined) {
       this._owner = userid;
     }
@@ -34,47 +31,12 @@ class Card {
   {
     node.textContent=this._likes;
   }
-  _onLikeButtonNode(like,node) {
 
-    if (like.classList.contains('photocards__likeimg-fill'))
-    {
-      this._api.unPutLike(this._id)
-      .then((data)=>{this._likes=data.likes.length;this._updateLikes(node);})
-      .catch((err)=>{console.log(err)});
-      like.classList.toggle('photocards__likeimg-fill')
-    }
-    else
-    {
 
-      this._api.putLike(this._id)
-      .then((data)=>{ this._likes=data.likes.length;this._updateLikes(node);})
-      .catch((err)=>{console.log(err)});
-      like.classList.toggle('photocards__likeimg-fill')
-    }
-
-  }
   _getTemplate() {
     const cardElement = this._template.content.querySelector('.photocards__item').cloneNode(true);
 
     return cardElement;
-  }
-  _agree() {
-    const agreeButton = this._question._popup.querySelector('#agree');
-    this._question.open(),
-      this._question.setEventListeners();
-    agreeButton.addEventListener('click', () => { this._removeElement(this._element); agreeButton.textContent="Да..." })
-
-  }
-  _removeElement(element) {
-
-    this._api.deleteCard(this._id)
-      .then(() => {
-        element.remove();
-        this._question._popup.querySelector('#agree').textContent="Да"
-        this._question.close();
-      }
-      )
-      .catch((err) => { console.log(err) });
   }
 
   createCard() {
@@ -99,14 +61,14 @@ class Card {
 
     if (this._user == this._owner) {
       deleteButtonNode.classList.add("photocards__delete-button__visible");
-      deleteButtonNode.addEventListener('click', this._agree);
+      deleteButtonNode.addEventListener('click', (button)=>{this._handleDeleteClick(this._id,button.currentTarget)});
 
     }
     else {
       deleteButtonNode.setAttribute('disabled', true);
     }
-    photoButtonNode.addEventListener('click', () => { this._handleCardClick(this._img, this._name), this._popupPhoto.setEventListeners() });
-    likeButtonNode.addEventListener('click', (a) => { this._onLikeButtonNode(a.currentTarget,likes);});
+    photoButtonNode.addEventListener('click', () => { this._handleCardClick(this._img, this._name)});
+    likeButtonNode.addEventListener('click', (a) => { this._handleLikeClick(a.currentTarget,likes);});
 
     return this._element;
 

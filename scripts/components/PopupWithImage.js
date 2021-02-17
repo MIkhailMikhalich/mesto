@@ -10,11 +10,10 @@ class PopupWithImage extends Popup {
   };
 
   open(img, name) {
-    this._popup.classList.add('popup_visible');
+    super.open();
     this._photonode.setAttribute('src', `${img}`);
     this._photonode.setAttribute('alt', `Фото ${name}`);
     this._name.textContent = name;
-    document.addEventListener('keydown',  this._closeByESC );
   };
 }
 export {PopupWithImage};
