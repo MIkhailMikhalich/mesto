@@ -27,11 +27,24 @@ class Card {
       this._likes = data.likes.length;
     };
   }
-  _updateLikes(node)
+  updateLikes(node)
   {
     node.textContent=this._likes;
   }
 
+  likeCard(node)
+  {
+    this._api.putLike(this._id)
+    .then((data)=>{ this._likes=data.likes.length;this.updateLikes(node);})
+    .catch((err)=>{console.log(err)});
+  }
+
+  unLikeCard(node)
+  {
+    this._api.unPutLike(this._id)
+    .then((data)=>{this._likes=data.likes.length;this.updateLikes(node);})
+    .catch((err)=>{console.log(err)});
+  }
 
   _getTemplate() {
     const cardElement = this._template.content.querySelector('.photocards__item').cloneNode(true);
@@ -68,7 +81,7 @@ class Card {
       deleteButtonNode.setAttribute('disabled', true);
     }
     photoButtonNode.addEventListener('click', () => { this._handleCardClick(this._img, this._name)});
-    likeButtonNode.addEventListener('click', (a) => { this._handleLikeClick(a.currentTarget,likes);});
+    likeButtonNode.addEventListener('click', (a) => { this._handleLikeClick(a.currentTarget,likes,this);});
 
     return this._element;
 

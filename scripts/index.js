@@ -89,21 +89,16 @@ function getFilledCard(data) {
 
 
 
-function onLikeButtonNode(like,node) {
+function onLikeButtonNode(like,node,card) {
 
   if (like.classList.contains('photocards__likeimg-fill'))
   {
-    api.unPutLike(this._id)
-    .then((data)=>{this._likes=data.likes.length;this._updateLikes(node);})
-    .catch((err)=>{console.log(err)});
+    card.unLikeCard(node);
     like.classList.toggle('photocards__likeimg-fill')
   }
   else
   {
-
-    api.putLike(this._id)
-    .then((data)=>{ this._likes=data.likes.length;this._updateLikes(node);})
-    .catch((err)=>{console.log(err)});
+    card.likeCard(node);
     like.classList.toggle('photocards__likeimg-fill')
   }
 
