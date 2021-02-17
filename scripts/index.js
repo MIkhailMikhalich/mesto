@@ -163,8 +163,9 @@ function handleCardClick(img,name)
 
 function handleProfileFormSubmit(properties)
 {
-
-    submitProfile(properties.first, properties.second);
+  debugger
+  const data = {name: properties.first, about: properties.second};
+    submitProfile(data);
 
 };
 
